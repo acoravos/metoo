@@ -6,7 +6,7 @@ var IssueNew = React.createClass({
   },
 
   componentWillMount: function() {
-    document.title = "FixStart | Submit an Issue";
+    document.title = "MeToo | Submit an Issue";
   },
 
   render: function(){

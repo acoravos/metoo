@@ -11,7 +11,7 @@ var FixNew = React.createClass({
   }, */
 
   componentWillMount: function() {
-    document.title = "FixStart | Submit a Fix";
+    document.title = "MeToo | Submit a Fix";
   },
 
   render: function(){

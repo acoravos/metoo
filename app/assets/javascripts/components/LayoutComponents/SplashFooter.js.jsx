@@ -6,13 +6,13 @@ var SplashFooter = React.createClass({
 
           <a className="one wide centered column splash_footer_text" href="/team">About</a>
 
-          <a className="one wide centered column splash_footer_text" href="mailto:fixstart@gmail.com.com">Contact</a>
+          <a className="one wide centered column splash_footer_text" href="mailto:andreacoravos@gmail.com">Contact</a>
 
           <a className="one wide centered column splash_footer_text" href="">Twitter</a>
 
-          <a className="one wide centered column splash_footer_text" href="https://github.com/ShadyLogic/fixstarter">GitHub</a>
+          <a className="one wide centered column splash_footer_text" href="https://github.com/acoravos/metoo">GitHub</a>
 
-          <a className="one wide centered column splash_footer_text" href="#"><span className="copyright">&copy;2015 FixStart</span> </a>
+          <a className="one wide centered column splash_footer_text" href="#"><span className="copyright">&copy;2015 MeToo</span> </a>
 
         </div>
       </div>
