@@ -7,23 +7,28 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # User.create()
 
-marshall = User.new(email: "marshall@fixstart.io", first_name: "Marshall", last_name: "Hattersly", bio: "I am a handyman with musical talent. If I can't fix it, I'll provide a backing track for those who can. I really enjoy creative stuff, and anytime I get to use my creative energy to solve a problem, my life is made better. FixStart FTW!", avatar_url: "http://i.imgur.com/hZ3fiKE.jpg", zip: '94122')
-marshall.password = "trashcan"
-marshall.badge_collection = BadgeCollection.new
-marshall.save!
+HUPD = User.new(email: "steven_catalano@hupd.harvard.edu", first_name: "HUPD", last_name: "", bio: "Official account of the Harvard University Police Department", avatar_url: "https://upload.wikimedia.org/wikipedia/en/a/af/HUPD_Logo.jpg", zip: '02163')
+HUPD.password = "harvard"
+HUPD.badge_collection = BadgeCollection.new
+HUPD.save!
 
-tim = User.new(email: "tim@fixstart.io", first_name: "Tim", last_name: "Cannady", bio: "I'm passionate about building meaningful products. I have a passion for community and fixing things. If it ain't broke, break it so I can fix it please!", avatar_url: "http://i.imgur.com/iPtlfAt.jpg", zip: '94110')
-tim.password = "trashcan"
-tim.badge_collection = BadgeCollection.new
-tim.save!
+mike = User.new(email: "mmonovoukas@mba2017.hbs.edu", first_name: "Mike", last_name: "Monovoukas", bio: "First time coder hacking for fun", avatar_url: "http://i.imgur.com/62hJ6Br.jpg", zip: '02115')
+mike.password = "harvard"
+mike.badge_collection = BadgeCollection.new
+mike.save!
 
-jacob = User.new(email: "jacob@fixstart.io", first_name: "Jacob", last_name: "Rogers", bio: "I carry a multitool with me everywhere I go so I can fix on the fly. If it's broken I will take it apart and put it back together. FixStart is my battlestation for conquering broken crap. ", avatar_url: "http://i.imgur.com/9E5LhP9.png", zip: '94107')
-jacob.password = "trashcan"
-jacob.badge_collection = BadgeCollection.new
-jacob.save!
+sam = User.new(email: "sali@mba2017.hbs.edu", first_name: "Sam", last_name: "Li", bio: "Master of HBS CODE club. Helped Goldman make software. Helped Google make money.", avatar_url: "http://i.imgur.com/JFEuIXq.jpg", zip: '02163')
+sam.password = "harvard"
+sam.badge_collection = BadgeCollection.new
+sam.save!
 
-andrea = User.new(email: "andrea@fixstart.io", first_name: "Andrea", last_name: "Coravos", bio: "I'm infamous with my friends and family for my 'fix-it' box. If something is broken I want to figure out a way to fix it. The FixStart site is my treasure trove.", avatar_url: "http://i.imgur.com/29yZRlU.jpg", zip: '94110')
-andrea.password = "trashcan"
+yoonju = User.new(email: "ykim@mba2017.hbs.edu", first_name: "Yoonju", last_name: "Kim", bio: "Math and computer whiz from greatest university ever.", avatar_url: "http://i.imgur.com/CNsqSKC.jpg", zip: '02163')
+yoonju.password = "harvard"
+yoonju.badge_collection = BadgeCollection.new
+yoonju.save!
+
+andrea = User.new(email: "acoravos@mba2017.hbs.edu", first_name: "Andrea", last_name: "Coravos", bio: "Group Ringleader", avatar_url: "http://i.imgur.com/29yZRlU.jpg", zip: '02163')
+andrea.password = "harvard"
 andrea.badge_collection = BadgeCollection.new
 andrea.save!
 #----------------------------------------------------------------------------------#
@@ -37,14 +42,10 @@ global = Community.create(title: "global")
 
 
 #-------------------------------- ISSUES -------------------------------------------#
-trashcan = Issue.create(user_id: 2, community_id: 1, title: "Trash cans knocked over", description: "The wind knocked down all the trashcans. Garbage is scattered all over the street and it looks awful. Should only take about 10 minutes to pick it all up.", image_url: "http://i.imgur.com/EL8I4re.jpg", latitude: "37.753276150711926", longitude: "-122.41456031799316", status: "closed" )
+theft = Issue.create(user_id: 2, community_id: 1, title: "Someone stole my gem", description: "Unattended gem stolen in the iLab. Stolen Value $1000", image_url: "http://i.imgur.com/EL8I4re.jpg", latitude: "42.363872", longitude: "-71.123805", status: "open" )
 fence = Issue.create(user_id: 1, community_id: 1, title: "Busted fence", description: "This fence has been broken for a long time. It would be great if somebody could fix it up. Most of the lumber is still there, it probably just needs some nails. Bring a hammer.", image_url: "http://i.imgur.com/MDgWvxy.jpg", latitude: "37.779805600955584", longitude: "-122.47713088989258", status: "open" )
 graffiti = Issue.create(user_id: 3, community_id: 1, title: "Graffiti on the wall", description: "Some dumb punks tagged up this wall a couple weeks ago and I'm tired of looking at it.", image_url: "http://i.imgur.com/QGndXZr.jpg", latitude: "37.78821704497665", longitude: "-122.43327140808104", status: "closed" )
-abandoned_seat = Issue.create(user_id: 4, community_id: 1, title: "Abandoned car seat", description: "This car seat has been here for a month. You'll probably need a truck to move it. Please get it out of here, it's an eyesore.", image_url: "http://i.imgur.com/PlxnYfH.jpg", latitude: "37.78414711095678", longitude: "-122.46348381042479", status: "open" )
-lawn = Issue.create(user_id: 1, community_id: 1, title: "Old, rundown lawn", description: "Mr. Brewster's lawn looks bad, but he's too old to fix it himself. I know he'd appreciate it if a couple of Good Samaritans helped him out.", image_url: "http://i.imgur.com/1y58BFq.jpg", latitude: "37.77464972662077", longitude: "-122.45438575744627", status: "open" )
-power_line = Issue.create(user_id: 2, community_id: 1, title: "Downed power line", description: "The storm knocked this power line down! Super dangerous, I've contacted the city of SF about it.", image_url: "http://i.imgur.com/aLznpvJ.jpg", latitude: "37.71383757727602", longitude: "-122.45412826538086", status: "open" )
-tree = Issue.create(user_id: 3, community_id: 1, title: "Tree fell over", description: "Storm knocked down a tree! The thing is huge, you'll definitely need a chainsaw to cut it up and haul it out of here. Bring help.", image_url: "http://i.imgur.com/Hmjr16m.jpg", latitude: "37.745267951150964", longitude: "-122.47421264648439", status: "open" )
-door = Issue.create(user_id: 4, community_id: 1, title: "Door off hinges", description: "This door came off its hinges. The screws don't seem to be anywhere around here, probably needs new ones anyway. Screwdriver / drill required.", image_url: "http://i.imgur.com/dCig2ZL.jpg", latitude: "37.75504055274351", longitude: "-122.41601943969727", status: "open" )
+
 #---------------------------------------------------------------------------------#
 
 
@@ -53,10 +54,8 @@ door = Issue.create(user_id: 4, community_id: 1, title: "Door off hinges", descr
 
 
 #-------------------------------- FIXES ------------------------------------------#
-trashcanfix = Fix.create(user_id: 4, issue_id: trashcan.id, title: "Picked up trashcan", description: "Got most of the trash, but the can keeps falling over.", image_url: "http://i.imgur.com/VnowEZ2.jpg")
-trashcanfix2 = Fix.create(user_id: 3, issue_id: trashcan.id, title: "Fixed it!", description: "It took a litte bit of industrial adhesive, but I got the can to stay again.", image_url: "http://i.imgur.com/aYluzcZ.jpg")
-graffitifix = Fix.create(user_id: 1, issue_id: graffiti.id, title: "Graffiti gone now", description: "Got my friends together and we scrubbed the wall. It's looking pretty good now!", image_url: "http://i.imgur.com/TE2OAXt.jpg")
-lawnfix = Fix.create(user_id: 2, issue_id: lawn.id, title: "Fixed up the lawn", description: "I had some sod leftover from my lawn reno. I knocked on Mr. Brewsters door and asked him if I could fix up his lawn. He was really great, sweet man he is.", image_url: "http://i.imgur.com/Iu2pQN3.jpg")
+trashcanfix = Fix.create(user_id: 4, issue_id: theft.id, title: "Picked up trashcan", description: "Got most of the trash, but the can keeps falling over.", image_url: "http://i.imgur.com/VnowEZ2.jpg")
+trashcanfix2 = Fix.create(user_id: 3, issue_id: theft.id, title: "Fixed it!", description: "It took a litte bit of industrial adhesive, but I got the can to stay again.", image_url: "http://i.imgur.com/aYluzcZ.jpg")
 #----------------------------------------------------------------------------------#
 
 
@@ -73,8 +72,8 @@ trashcanfixcomment2 = FixComment.create(fix_id: trashcanfix.id, user_id: 4, cont
 
 
 #-------------------------------- ISSUE COMMENTS -------------------------------------#
-trancancomment = IssueComment.create(issue_id: trashcan.id, user_id: 1, content: "What an eyesore, somebody get on this.")
-smashcancomment = IssueComment.create(issue_id: trashcan.id, user_id: 2, content: "Looks like it's all fixed now!")
+trancancomment = IssueComment.create(issue_id: theft.id, user_id: 1, content: "What an eyesore, somebody get on this.")
+smashcancomment = IssueComment.create(issue_id: theft.id, user_id: 2, content: "Looks like it's all fixed now!")
 #-------------------------------------------------------------------------------------#
 
 
@@ -116,14 +115,14 @@ watch10 = IssuesWatch.create(user_id: 4, issue_id: 2)
 
 
 #-------------------------------- CATEGORIES -----------------------------------------#
-heavy =         Category.create(name: "Heavy", description: "Our hero will need to lift >50 lbs.")
-very_heavy =    Category.create(name: "Very Heavy", description: "Our hero will need to lift >100 lbs.")
-dirty =         Category.create(name: "Dirty", description: "Our hero will need to clean the area or item.")
-tools =         Category.create(name: "Tools", description: "Our hero will need to bring a tool (e.g., screwdriver, hammer). See description for the submitter’s opinion for what tools are required..")
-yard_work =     Category.create(name: "Yard Work & Removal", description: "Our hero can clean up the community area and remove any yard waste or rubbish.")
-handyman =      Category.create(name: "General Handyman", description: "Our hero would perform minor repairs.")
-escalate =      Category.create(name: "Escalate", description: "This issue is bigger than what someone in our community can solve, and needs a hero to alert the city / public officials.")
-uncategorized = Category.create(name: "Uncategorized", description: "A home for all orphaned fixes.")
+heavy =         Category.create(name: "Violent crime", description: "Assaults and other reported uses of violence")
+very_heavy =    Category.create(name: "Sexual Assault", description: "Sexual incidents which include indecent exposure, sexual harassment, and rape")
+dirty =         Category.create(name: "Noise", description: "General noise complaints")
+tools =         Category.create(name: "Theft", description: "Stolen property, burglaries, and other reports of theft")
+yard_work =     Category.create(name: "Harassment", description: "General (non-sexual) harassment, bullying, or threats")
+handyman =      Category.create(name: "Suspicious activity", description: "Trespassing, loitering, and other forms of suspicious activity")
+escalate =      Category.create(name: "Escalate", description: "For issues that have not been officially reported but require additional law enforcement attention")
+uncategorized = Category.create(name: "Other", description: "All other reported incidents")
 #-------------------------------------------------------------------------------------#
 
 
@@ -131,16 +130,23 @@ uncategorized = Category.create(name: "Uncategorized", description: "A home for 
 
 
 #-------------------------------- CATEGORIES-ISSUES ----------------------------------#
-heavy.issues << trashcan
-heavy.issues << abandoned_seat
-very_heavy.issues << tree
-dirty.issues << trashcan
-dirty.issues << graffiti
-tools.issues << fence
-tools.issues << door
-yard_work.issues << tree
-yard_work.issues << lawn
-handyman.issues << door
-escalate.issues << power_line
-escalate.issues << tree
+heavy.issues << theft
 #-------------------------------------------------------------------------------------#
+
+
+#------------------------------- IMPORTING POLICE LOG-----------------#
+
+# f = File.open('db/policelog_test.csv', 'r')
+
+# f.each_line { |line|
+#     fields = line.split(',')
+#     i = Issue.new
+
+#     i.title = fields[0].tr_s('"', '').strip
+#     i.status = fields[1].tr_s('"', '').strip
+#     i.description = fields[2].tr_s('"', '').strip
+#     i.save!
+
+#       # i = Issue.create(title: fields[0], status: fields[1], description: field[2])
+# }
+

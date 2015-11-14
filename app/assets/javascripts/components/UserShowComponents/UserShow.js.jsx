@@ -15,9 +15,6 @@ var UserShow = React.createClass({
             <h3 className="ui horizontal divider header"> About Me </h3>
             < UserProfileCard user={this.props.user} same_user={this.props.same_user} />
 
-            <br></br>
-
-            < Badges badges={this.props.badges} />
           </div>
 
           <div className=" column">
