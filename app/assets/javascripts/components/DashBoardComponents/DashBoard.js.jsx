@@ -1,7 +1,7 @@
 var Dashboard = React.createClass({
 
   componentWillMount: function() {
-    document.title = "FixStart | Dashboard";
+    document.title = "MeToo | Dashboard";
   },
 
   render: function(){
@@ -35,4 +35,4 @@ var Dashboard = React.createClass({
 })
 
 
-// <h4 className="ui horizontal divider header"> FixStart Issue Map </h4>
+// <h4 className="ui horizontal divider header"> MeToo Issue Map </h4>
