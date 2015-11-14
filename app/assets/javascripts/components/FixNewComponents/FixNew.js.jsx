@@ -11,7 +11,7 @@ var FixNew = React.createClass({
   }, */
 
   componentWillMount: function() {
-    document.title = "MeToo | Submit a Fix";
+    document.title = "MeToo | Submit a Verification";
   },
 
   render: function(){
@@ -20,8 +20,8 @@ var FixNew = React.createClass({
 
       <div className="ui stackable three column centered grid">
           <div className=" column">
-            <h2 className="ui horizontal divider header"> Submit a Fix! </h2>
-            <p>Your fix is for <a href={"/issues/" + this.props.issue.id}>Issue #{this.props.issue.id}: {this.props.issue.title}</a></p>
+            <h2 className="ui horizontal divider header"> Submit a Verification! </h2>
+            <p>Your verification is for <a href={"/issues/" + this.props.issue.id}>Issue #{this.props.issue.id}: {this.props.issue.title}</a></p>
 
             < FixImage issue={this.props.issue}/>
             <br/>

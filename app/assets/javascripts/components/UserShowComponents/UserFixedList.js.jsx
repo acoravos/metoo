@@ -10,7 +10,7 @@ var UserFixedList = React.createClass({
     return (
       <div className="user_issues_list_wrapper">
 
-        <h3 className="ui horizontal divider header"> Issues Fixed</h3>
+        <h3 className="ui horizontal divider header"> Incidents Verified</h3>
 
         <div className="ui feed small">
 
