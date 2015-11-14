@@ -77,6 +77,8 @@ class IssuesController < ApplicationController
       @issue.image_url = "http://i.imgur.com/xQyE9HC.png"
     end
 
+    @issue.community_id = 1
+
     if @issue.save
       unless category_id_array.empty?
         category_id_array.each do |category_id|
@@ -89,9 +91,6 @@ class IssuesController < ApplicationController
     end
 
     @issue.update_attributes(user_id: current_user.id)
-
-    #Badge Assignment
-    check_issue_badges
 
     # publish event to redis server, sent to dashboard
     Redis.current.publish 'issue-created', Issue.package_latest_issue.to_json

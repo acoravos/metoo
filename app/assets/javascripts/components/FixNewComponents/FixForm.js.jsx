@@ -29,12 +29,12 @@ var FixForm = React.createClass({
         <form className="ui form" action={'/issues/' + this.props.issue.id + '/fixes'} method="post"  /* onSubmit={this.handleSubmit} */  ref="form" encType="multipart/form-data">
 
         <div className="field">
-          <label htmlFor="ff_title">Name The Fix</label>
+          <label htmlFor="ff_title">Name The Resolution</label>
           <input id="ff_title" ref="title" name="title" type="text" />
         </div>
 
         <div className="field">
-          <label htmlFor="ff_description">Describe the Fix</label>
+          <label htmlFor="ff_description">Describe the Resolution</label>
           <textarea id="ff_description" rows="3" ref="description" name="description" type="text" />
         </div>
 
@@ -44,7 +44,7 @@ var FixForm = React.createClass({
         </div>
         <br/>
 
-          <button className="ui button primary" type="submit">Submit my fix </button>
+          <button className="ui button primary" type="submit">Resolve this incident </button>
         </form>
       </div>
       )

@@ -7,6 +7,7 @@ var IssueOpenClose = React.createClass({
       var button_text = "Re-open Issue"
       var message = "You created this issue, and someone has submitted a fix, which auto-closed your issue. Would you like to re-open the issue?"
       var status = "closed"
+
     }else{
       var path= "/issues/"+this.props.issue.id+"/close"
       // var button = " red"

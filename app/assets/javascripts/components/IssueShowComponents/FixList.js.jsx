@@ -13,7 +13,7 @@ var FixList = React.createClass({
 
         <div className="ui feed small">
           { this.props.fixes.length == 0 ?
-            <p> No fixes posted. Submit a fix! </p>
+            <p> Issue not yet resolved. Help resolve this! </p>
           :
             React.addons.createFragment({Fixes})
           }

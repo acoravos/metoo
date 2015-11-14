@@ -7,6 +7,7 @@
 
       <h2 className="ui header">{this.props.issue.title} <span className="c-grey l-7 pos-r">[{this.props.issue.status.toUpperCase()}]</span> </h2>
       <p><em>{this.props.address}</em></p>
+
       <div className="ui divider"></div>
 
       { this.props.current_user ?
@@ -20,25 +21,6 @@
       :
         <p> {this.props.upvotes} MeToo community members have up-voted this issue </p>
       }
-
-        { this.props.current_user ?
-          <div>
-
-            { this.props.current_user_created_issue ?
-              < IssueOpenClose issue={this.props.issue} />
-            :
-              null
-            }
-
-          </div>
-        :
-          < IssueStatus status={this.props.issue.status} />
-        }
-
-
-
-
-
 
 
       </div>

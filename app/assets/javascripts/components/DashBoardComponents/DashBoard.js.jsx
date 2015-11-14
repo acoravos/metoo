@@ -1,7 +1,7 @@
 var Dashboard = React.createClass({
 
   componentWillMount: function() {
-    document.title = "MeToo | Dashboard";
+    document.title = "MeToo | Stats Dashboard";
   },
 
   render: function(){
@@ -12,7 +12,7 @@ var Dashboard = React.createClass({
 
 
         <div className="one column row">
-          <h2 className="ui horizontal divider header"> Dashboard </h2>
+          <h2 className="ui horizontal divider header"> Stats Dashboard </h2>
         </div>
 
         <div>
@@ -35,4 +35,4 @@ var Dashboard = React.createClass({
 })
 
 
-// <h4 className="ui horizontal divider header"> MeToo Issue Map </h4>
+// <h4 className="ui horizontal divider header"> MeToo Incident Map </h4>

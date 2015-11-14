@@ -66,10 +66,10 @@ class Issue < ActiveRecord::Base
         image = Issue.assign_image(issue)
         issue_items << {  id: issue.id,
                           title: issue.title,
-                          description: 'This issue has been fixed!',
+                          description: '',
                           latitude: issue.latitude,
                           longitude: issue.longitude,
-                          fix_text: 'Check out the fix!',
+                          fix_text: '',
                           link: "/issues/#{issue.id}",
                           color: '989898',
                           category_icon: CATEGORIES[category],
@@ -94,10 +94,10 @@ class Issue < ActiveRecord::Base
     image = Issue.assign_image(self)
     {  id: self.id,
        title: self.title,
-       description: 'This issue has been fixed!',
+       description: '',
        latitude: self.latitude,
        longitude: self.longitude,
-       fix_text: 'Check out the fix!',
+       fix_text: '',
        link: "/issues/#{self.id}",
        color: '989898',
        category_icon: CATEGORIES[category],
@@ -134,7 +134,7 @@ class Issue < ActiveRecord::Base
       end
     end
     if found_issues.empty?
-      found_issues << { title: "No issues found",
+      found_issues << { title: "No incidents found",
                         description: "Try another search!",
                         latitude: location_coords[0],
                         longitude: location_coords[1],
@@ -177,7 +177,7 @@ class Issue < ActiveRecord::Base
       description: issue.description,
       latitude: issue.latitude,
       longitude: issue.longitude,
-      fix_text: 'Fix It!',
+      fix_text: 'Resolve the issue',
       link: "/issues/#{issue.id}",
       color: '0044FF',
       category_icon: CATEGORIES[category],

@@ -11,7 +11,7 @@ var ResultItem = React.createClass({
           <div className="summary">
               {this.props.title}
               <div className="date">
-                <b>Points:</b> {this.props.points}
+                <b>Upvotes:</b> {this.props.points}
               </div>
           </div>
               <div className="extra text">
@@ -20,7 +20,7 @@ var ResultItem = React.createClass({
                 {this.props.description}
               </div>
               <br/>
-              <a className="medium ui teal button discover_fix_button" id="fix" href={this.props.link}>Fix it!</a>
+              <a className="medium ui teal button discover_fix_button" id="fix" href={this.props.link}>Resolve it!</a>
               <hr/>
         </div>
       </div>
