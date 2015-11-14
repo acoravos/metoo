@@ -32,8 +32,6 @@ class FixesController < ApplicationController
       issue.save
       Redis.current.publish 'fix-created', issue.package_as_fixed.to_json
 
-      #Badge Assignment
-      check_fix_badges
     end
     redirect_to issue_path(id: issue.id)
   end
