@@ -1,0 +1,48 @@
+<div id="splash">
+  <div id="mainSplash">
+
+    <div class="ui huge icon header">
+
+      <div class="ui huge icon header inverted">
+        <i class="circular configure icon "></i> Start Fixing. Today.
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="signin_and_login_form_wrapper">
+  <div class="signin_and_login_form">
+  <!--   <h2>Sign up</h2> -->
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field ui form">
+        <p class="splash_title"><%= f.label :email %></p>
+        <p class="splash_field"><%= f.email_field :email, autofocus: true %></p>
+      </div>
+
+      <div class="field ui form">
+        <p class="splash_title"><%= f.label :password %></p>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+         <p class="splash_field"><%= f.password_field :password, autocomplete: "off" %></p>
+      </div>
+
+      <div class="field ui form">
+        <p class="splash_title"><%= f.label :zip %></p>
+        <p class="splash_field"> <%= f.text_field :zip, autocomplete: "off" %></p>
+      </div>
+
+      <div class="actions ui form">
+        <br />
+      </div>
+  </div>
+      <%= f.submit "Sign up" %>
+    <% end %>
+      <br />
+      <br />
+    <%= render "devise/shared/links" %>
+</div>
