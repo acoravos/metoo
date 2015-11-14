@@ -8,7 +8,7 @@ var IssueShow = React.createClass({
     return (
       <div className="issue_show">
 
-      <h2 className="ui horizontal divider header"> MeToo Issue </h2>
+      <h2 className="ui horizontal divider header"> MeToo Incident </h2>
       <br/>
       <br/>
 
