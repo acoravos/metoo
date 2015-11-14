@@ -9,6 +9,10 @@ class Issue < ActiveRecord::Base
   has_many   :categories_issues
   has_many   :categories, through: :categories_issues
 
+  geocoded_by :address
+  after_validation :geocode
+
+
   CATEGORIES = {
     "None" => 'circle-stroked',
     "Heavy" => 'square-stroked',
