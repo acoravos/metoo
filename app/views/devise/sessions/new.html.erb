@@ -1,0 +1,48 @@
+<div id="splash">
+  <div id="mainSplash">
+
+    <div class="ui huge icon header">
+
+      <div class="ui huge icon header inverted">
+        <span class="splash_title"> <i class="circular configure icon "></i> FixStart </span>
+        <br/>
+        <span class="splash_slogan"> crowdsourced community upkeep </span>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="signin_and_login_form_wrapper">
+  <div class="signin_and_login_form">
+  <!--   <h2>Log in</h2> -->
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field ui form">
+        <p class="splash_title"><%= f.label :email %></p>
+        <p class="splash_field"><%= f.email_field :email, autofocus: true %></p>
+      </div>
+
+      <div class="field ui form">
+        <p class="splash_title"><%= f.label :password %></p>
+        <p class="splash_field"><%= f.password_field :password, autocomplete: "off" %></p>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="field ui form">
+          <br/>
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end -%>
+
+      <div class="actions ui form">
+        <br />
+      </div>
+  </div>
+      <p class="splash_button"><%= f.submit "Log in" %></p>
+    <% end %>
+      </br>
+      </br>
+    <%= render "devise/shared/links" %>
+</div>

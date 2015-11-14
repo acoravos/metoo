@@ -1,0 +1,834 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+/*-------------------BODY STUFF----------------*/
+ * {
+  /*border: 1px dashed white;*/
+ }
+
+body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 200;
+}
+
+html{
+  padding: 0;
+}
+
+.container{
+  position: relative;
+  /*margin-bottom: 500px;*/
+  height: 100%;
+}
+
+#content{
+  margin-top: 1em;
+  padding: 40px;
+  /*margin-bottom: 500px;*/
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.notice {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #1B1C1D;
+  color: #E9E9E9;
+  border-bottom-right-radius: 10px;
+}
+
+label {
+  cursor: pointer;
+}
+
+/*--------------------------------------------*/
+
+
+/*-------------------MAP----------------*/
+
+#map {
+  cursor: crosshair;
+  height: 100%;
+  border: 1px solid black;
+}
+
+/*--------------------------------------------*/
+
+
+/*-------------------SEMANTIC----------------*/
+@import "semantic-ui";
+@import "semantic-ui/collections/menu";
+@import "semantic-ui/collections/grid";
+/*@import "semantic-ui/collections/breadcrumb";
+@import "semantic-ui/collections/message";
+@import "semantic-ui/collections/table";
+@import "semantic-ui/collections/table";*/
+/*--------------------------------------------*/
+
+
+
+
+/*-------------------HEADER----------------*/
+#header{
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+#mainHead{
+  margin: 40px 40px 0px 40px;
+  text-align: center;
+}
+
+#menu{
+  max-width: 1024px;
+  margin: 0 auto;
+  /*font-size: 1.25em;*/
+}
+
+#mainImage{
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  min-height: 100%;
+}
+
+#m_btn{
+  display: none;
+}
+
+.header_text{
+   text-shadow: 0.5px 0.5px 0.5px #000;
+}
+
+.m_item{
+  height: 5em;
+}
+
+
+/*Main Head has slight margin when at full screen*/
+@media all and(min-width: 900px){
+  #mainHead .header{
+    margin-top: 3%;
+  }
+}
+
+/*main head font is smaller when screen size is smaller*/
+/*@media all and(max-width: 730px){
+  #mainHead .ui.header.huge{
+    font-size: 1.5em;
+  }
+}*/
+
+/*when larger than mobile*/
+@media all and(min-width: 631px){
+  html body.pushed{
+    margin-left: 0 !important;
+  }
+
+  /*hide the mobile menu*/
+  #m_menu.active{
+    display: none;
+  }
+
+  /*hide the mobile header*/
+  #mainHead h2{
+    display: none;
+  }
+}
+
+/*when iphone5 and iphone6*/
+@media all and(max-width: 630px){
+
+  /*hide the normal menu*/
+  #menu{display: none;}
+
+  /*display the mobile menu button*/
+  #m_btn{
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  body.pushed{
+    overflow: hidden;
+  }
+
+  /*hide the main header*/
+  #mainHead .ui.icon.header.huge{
+    display: none;
+  }
+
+  #mainHead h2{
+    font-size: 4em;
+    font-weight: 700;
+  }
+}
+/*--------------------------------------------*/
+
+
+
+
+
+
+/*-------------------MAIN FOOTER----------------*/
+#footer{
+  background: #eee;
+  border-top: 1px solid #ddd;
+  width: 100%;
+  padding: 5 20px 20px 20px;
+  box-sizing: border-box;
+  color: #666;
+  font-size: 1.25em;
+  z-index: 1000;
+  position: relative;
+}
+
+#footer a{
+  text-decoration: none;
+  color: #666;
+}
+
+#footer a:hover{
+  color: #ff6e00;
+}
+
+#footer_stream{
+  font-size: 0.75em;
+  margin-left: 20px;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 100px;
+}
+
+.footer_header{
+  color: #666;
+}
+/*-------------------------------------------*/
+
+
+
+
+/*---------------SPLASH PAGE----------------*/
+#splash{
+  /*padding-bottom: 20px;*/
+}
+
+#mainSplash{
+  text-align: center;
+  position: relative;
+}
+
+#splash_wrapper{
+  min-height: 100%;
+  overflow: hidden;
+  background: url(http://i.imgur.com/ev4zHig.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+}
+
+.splash_title{
+  /*text-shadow: 1px 1px 1px #000;*/
+}
+
+.splash_slogan{
+  font-family: helvetica;
+  letter-spacing: 5px;
+  font-weight: 100;
+  font-size: 0.50em;
+  opacity: 0.8;
+}
+
+/*#splashImage{
+  background-image: url('http://i.imgur.com/hNp8q7C.jpg');
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  min-height: 100%;
+}*/
+
+.splashImage{
+  background-image: url('http://i.imgur.com/hNp8q7C.jpg');
+  height: 500px;
+  /*position: absolute;*/
+  top: 0;
+  /*z-index: -1;*/
+/*  min-height: 100%;*/
+}
+
+.splash_nav_button{
+  display: inline-block;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+#splash_footer{
+  width: 100%;
+  /*box-sizing: border-box;*/
+  /*height: 20px;*/
+  font-size: 1.25em;
+  z-index: 1000;
+  /*position: relative;*/
+  position: absolute;
+  bottom: 0;
+  color: red;
+  /*border: 1px solid yellow;*/
+}
+
+#splash_footer_content{
+  padding-bottom: 20px;
+}
+
+.splash_footer_text{
+  color: white;
+  opacity: 0.55;
+  text-decoration: none;
+  text-shadow: 0.5px 0.5px 0.5px #000;
+}
+
+.copyright{
+  font-size: 0.75em;
+}
+
+/*@media all and(min-width: 900px){
+  #mainSplash .header{
+    margin-top: 3%;
+  }
+}*/
+
+@media all and(max-width: 730px){
+  #mainSplash .ui.header.huge{
+    font-size: 1.5em;
+  }
+  #splash_footer{
+    display: none;
+  }
+}
+
+@media all and(min-width: 631px){
+  html body.pushed{
+    margin-left: 0 !important;
+  }
+  #m_menu.active{
+    display: none;
+  }
+  #mainSplash h2{
+    display: none;
+  }
+}
+
+/*@media all and(max-width: 630px){
+  #menu{display: none;}
+  #m_btn{
+    display: inline-block;
+  }
+  body.pushed{
+    overflow: hidden;
+  }
+  #mainHead .ui.icon.header.huge{
+    display: none;
+  }
+}*/
+
+input[name=commit] {
+  border-radius: 3px;
+  border: none;
+  padding: 10px;
+  width: 84.4531px;
+  height: 36px;
+  background-color: #E0E1E2;
+}
+
+input[name=commit]:hover {
+  background-color: #CACBCD;
+}
+
+/*--------------------------------------------*/
+
+/*---------------SIGNUP AND LOGIN PAGES---------------*/
+.signin_and_login_form_wrapper{
+  display: inline-block;
+  margin-bottom: 50px;
+}
+
+.signin_and_login_form{
+  color: white;
+  font-weight: bold;
+}
+
+.slash_form{
+  color: white;
+}
+
+.splash_field{
+  opacity: 0.5;
+}
+
+@media only screen and (min-device-width: 375px) and (min-device-width: 375px)   and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  .signin_and_login_form_wrapper{
+    width: 80%;
+    font-size: 3em
+  }
+  .splash_field{
+    font-size: 3em;
+  }
+  .splash_title{
+    font-size: 3em;
+  }
+
+}
+
+/*---------------------------------------------------*/
+
+
+
+
+
+
+/*---------------FIXED MENU TEMPLATE----------------*/
+.fixed-menu-template {
+  background-color: #D3D3D3;
+  text-align: center;
+}
+/*--------------------------------------------*/
+
+
+
+
+
+/*---------------REGISTER/LOGIN PAGE--------------*/
+/*.register_login_page{
+  width: 100%;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.register_form{
+  text-align: left;
+  display: inline-block;
+  width: 20%;
+  font-size: 20px;
+  border: 1px solid skyblue;
+}
+
+.login_form{
+  text-align: left;
+  display: inline-block;
+  width: 20%;
+  font-size: 20px;
+  border: 1px solid skyblue;
+}*/
+/*----------------------------------------------*/
+
+
+
+
+/*---------------DASHBOARD PAGE--------------*/
+.dashboard_page{
+  text-align: center;
+  /*border: 1px solid black;*/
+}
+
+
+.dashboard_nav_wrapper{
+/*  height: 200px;*/
+  /*border: 1px solid skyblue;*/
+}
+
+.dashboard_map_wrapper{
+  /*background-image: url(http://i.imgur.com/ziM5W14.png);*/
+  /*display: inline-block;*/
+  width: 100%;
+  height: 800px;
+  /*background-size: 100%;*/
+  /*border: 3px solid lightgrey;*/
+}
+
+.dashboard_nav_link{
+  /*display: inline-block;*/
+  font-size: 24px;
+  margin: 2%;
+}
+
+@media all and(max-width: 750px){
+  .dashboard_map_wrapper{
+    height: 400px;
+  }
+
+  .discover_button{
+    display: block;
+    width: 100%;
+  }
+}
+
+/*----------------------------------------------*/
+
+
+
+
+
+/*---------------DISCOVER PAGE--------------*/
+.discover_page{
+  text-align: center;
+}
+
+
+.search_bar_wrapper{
+
+}
+
+.filter_bar_wrapper{
+
+}
+
+#search_button{
+  color: white;
+}
+
+.result_list_wrapper{
+  text-align: left;
+  margin-top: 25px;
+  /*height: 600px;*/
+  width: 37%;
+  float: left;
+}
+
+.result_list_event{
+}
+
+.result_item_category{
+  color: gray;
+}
+
+.result_item_wrapper{
+
+}
+
+.discover_fix_button{
+  margin: 25px;
+}
+
+.discover_form{
+  width: 35%;
+  margin: 0 auto;
+  float: left;
+}
+
+.discover_map_wrapper{
+  margin-top: 15px;
+  height: 600px;
+  width: 60%;
+  float: right;
+  background-image: url(http://i.imgur.com/ziM5W14.png);
+  background-size: 100%;
+  border: 3px solid lightgrey;
+}
+
+@media all and(max-width: 750px){
+  .result_list_wrapper{
+    float:none;
+    display: block;
+    width: 100%;
+  }
+
+  .result_list_wrapper{
+    float: none;
+    width: 100%;
+  }
+
+  .discover_map_wrapper{
+    float:none;
+    width: 100%;
+    height:400px;
+  }
+
+  .discover_form{
+    float:none;
+    width: 80%;
+  }
+
+
+}
+
+/*----------------------------------------------*/
+
+
+
+
+/*---------------USER PROFILE--------------*/
+
+.user_show_wrapper {
+
+}
+
+.user_header_wrapper {
+
+}
+
+.user_activity_wrapper {
+
+}
+
+.profile_pic_wrapper {
+
+}
+
+.img-circle {
+    border-radius: 50%;
+    width: 10%;
+    height: 10%;
+}
+
+.user_title_wrapper {
+}
+
+.user_fixed_list_wrapper {
+
+}
+
+.user_issues_list_wrapper {
+
+}
+
+.user_watching_list_wrapper {
+
+}
+
+.user_bio_wrapper {
+
+}
+
+.user_fixed_item_wrapper {
+
+}
+
+.user_issues_item_wrapper {
+
+}
+
+.user_watching_item_wrapper {
+
+}
+
+.user_badges_wrapper {
+
+}
+
+.profile_edit_wrapper {
+
+}
+
+.user_profile_card_wrapper{
+  margin: 0 auto;
+
+}
+
+.user_profile_column_wrapper{
+  margin: 0 auto;
+
+}
+
+/*----------------------------------------------*/
+
+
+
+
+/*---------------FIX SHOW PAGE--------------*/
+.fix_show_page{
+
+}
+
+.fix_header{
+
+}
+/*----------------------------------------------*/
+
+
+/*---------------ISSUE SHOW MAP --------------*/
+
+.issue_show {
+  margin-top: 1em;
+}
+
+.issue_show_map_wrapper {
+  height: 600px;
+  width: 100%;
+}
+
+@media all and(max-width: 767px){
+  .issue_show_map_wrapper{
+    height: 400px;
+  }
+}
+
+/*----------------------------------------------*/
+
+
+/*---------------ISSUE NEW FORM --------------*/
+.issue_new_wrapper{
+  text-align: center;
+}
+
+.issue_map_wrapper{
+  float: right;
+  height: 600px;
+  width: 60%;
+}
+
+
+.issue_image_wrapper{
+
+}
+
+.issue_form_wrapper{
+
+}
+
+.issue_form_wrapper #geoLocate {
+  margin-bottom: 1em;
+}
+
+.issue_votes{
+  text-align: center;
+  /*display: inline-block;*/
+}
+
+.issue_checkbox {
+  display: inline-block;
+  margin-bottom: 15px;
+  right: 30px;
+}
+
+.issue_header{
+  text-align: center;
+}
+
+.issue_open_close{
+}
+
+.issue_new_form{
+  font-size: 20px;
+  width: 35%;
+  float: left;
+  text-align: left;
+}
+
+#myCanvas{
+  height: 50px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 750px) {
+  .issue_map_wrapper {
+    width: 100%;
+    height: 400px;
+    float: none;
+    margin-bottom: 5em;
+  }
+
+  .issue_new_form{
+    width: 100%;
+    float: none;
+  }
+
+  .issue_new_categories{
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+}
+
+
+/*----------------------------------------------*/
+
+/*----------------------BADGES -------------------*/
+.badge{
+  width: 50px;
+}
+/*----------------------------------------------*/
+
+/*---------------------- ABOUT TEAM PAGE -------------------*/
+.about_team_show_page {
+
+}
+
+/*----------------------------------------------*/
+
+
+/*----------------------STREAM (old) -------------------*/
+.stream_wrapper {
+  /*display: inline-block;*/
+  border: 3px solid lightgrey;
+  height: 400px;
+  overflow: scroll;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.stream_item_wrapper{
+  margin: 1%;
+  padding: 1%;
+  /*border-top: 1px solid skyblue;*/
+}
+
+.stream_title{
+  font-size: 24px;
+  text-decoration: none;
+  color: orange;
+}
+
+.stream_content{
+  text-decoration: none;
+  color: black;
+}
+
+.stream_image{
+  width: 10%;
+}
+/*----------------------------------------------*/
+
+
+
+
+/*----------------ATOMIC STYLING----------------*/
+.c-green {
+  color: green;
+  opacity: .5;
+}
+
+.c-grey {
+  color: #C0C0C0;
+}
+
+.l-7 {
+  left: 7px;
+}
+
+.pos-r {
+  position: relative;
+}
+/*----------------------------------------------*/
+
