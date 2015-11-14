@@ -9,6 +9,7 @@ class Issue < ActiveRecord::Base
   has_many   :categories_issues
   has_many   :categories, through: :categories_issues
 
+
   CATEGORIES = {
     "None" => 'circle-stroked',
     "Heavy" => 'square-stroked',
