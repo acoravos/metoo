@@ -1,14 +1,14 @@
 var IssueShow = React.createClass({
 
   componentWillMount: function() {
-    document.title ="FixStart | "+ this.props.issue.title;
+    document.title ="MeToo | "+ this.props.issue.title;
   },
 
   render: function(){
     return (
       <div className="issue_show">
 
-      <h2 className="ui horizontal divider header"> MeToo Issue </h2>
+      <h2 className="ui horizontal divider header"> MeToo Incident </h2>
       <br/>
       <br/>
 

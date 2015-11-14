@@ -7,14 +7,14 @@ var Sidebar = React.createClass({
         Submit an Issue
       </a>
 
-      <a href="/dashboard" className="item m_item">
-        <i className="home icon"></i>
-        Dashboard
-      </a>
-
       <a href="/discover" className="item m_item">
         <i className="search icon"></i>
-        Discover
+        Find an Issue
+      </a>
+
+      <a href="/dashboard" className="item m_item">
+        <i className="home icon"></i>
+        Stats Dashboard
       </a>
 
       <a href="/profile" className="item m_item">
