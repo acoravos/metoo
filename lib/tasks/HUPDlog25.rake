@@ -1,5 +1,5 @@
 desc "Add in 25 logs from Harvard Police Department to Incident Database"
-task :hupd_import => :environment do
+task :hupd_import_25 => :environment do
   require 'csv'
   c = 0
 
@@ -8,6 +8,7 @@ task :hupd_import => :environment do
     if c < 26
         i = Issue.new
         i.user_id = 1
+        i.community_id = 1
         i.description = row[8]
         i.title = row[3]
         i.status = row[7]
