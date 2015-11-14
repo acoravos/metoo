@@ -18,7 +18,7 @@
 
         </div>
       :
-        <p> {this.props.upvotes} FixStart community members have up-voted this issue </p>
+        <p> {this.props.upvotes} MeToo community members have up-voted this issue </p>
       }
 
         { this.props.current_user ?
