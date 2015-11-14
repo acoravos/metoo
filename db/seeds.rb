@@ -7,23 +7,23 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # User.create()
 
-marshall = User.new(email: "marshall@fixstart.io", first_name: "Marshall", last_name: "Hattersly", bio: "I am a handyman with musical talent. If I can't fix it, I'll provide a backing track for those who can. I really enjoy creative stuff, and anytime I get to use my creative energy to solve a problem, my life is made better. FixStart FTW!", avatar_url: "http://i.imgur.com/hZ3fiKE.jpg", zip: '94122')
-marshall.password = "trashcan"
-marshall.badge_collection = BadgeCollection.new
-marshall.save!
+mike = User.new(email: "mmonovoukas@mba2017.hbs.edu", first_name: "Mike", last_name: "Monovoukas", bio: "First time coder hacking for fun", avatar_url: "http://i.imgur.com/62hJ6Br.jpg", zip: '02115')
+mike.password = "harvard"
+mike.badge_collection = BadgeCollection.new
+mike.save!
 
-tim = User.new(email: "tim@fixstart.io", first_name: "Tim", last_name: "Cannady", bio: "I'm passionate about building meaningful products. I have a passion for community and fixing things. If it ain't broke, break it so I can fix it please!", avatar_url: "http://i.imgur.com/iPtlfAt.jpg", zip: '94110')
-tim.password = "trashcan"
-tim.badge_collection = BadgeCollection.new
-tim.save!
+sam = User.new(email: "sali@mba2017.hbs.edu", first_name: "Sam", last_name: "Li", bio: "Master of HBS CODE club. Helped Goldman make software. Helped Google make money.", avatar_url: "http://i.imgur.com/JFEuIXq.jpg", zip: '02163')
+sam.password = "harvard"
+sam.badge_collection = BadgeCollection.new
+sam.save!
 
-jacob = User.new(email: "jacob@fixstart.io", first_name: "Jacob", last_name: "Rogers", bio: "I carry a multitool with me everywhere I go so I can fix on the fly. If it's broken I will take it apart and put it back together. FixStart is my battlestation for conquering broken crap. ", avatar_url: "http://i.imgur.com/9E5LhP9.png", zip: '94107')
-jacob.password = "trashcan"
-jacob.badge_collection = BadgeCollection.new
-jacob.save!
+yoonju = User.new(email: "ykim@mba2017.hbs.edu", first_name: "Yoonju", last_name: "Kim", bio: "Math and computer whiz from greatest university ever.", avatar_url: "http://i.imgur.com/CNsqSKC.jpg", zip: '02163')
+yoonju.password = "harvard"
+yoonju.badge_collection = BadgeCollection.new
+yoonju.save!
 
-andrea = User.new(email: "andrea@fixstart.io", first_name: "Andrea", last_name: "Coravos", bio: "I'm infamous with my friends and family for my 'fix-it' box. If something is broken I want to figure out a way to fix it. The FixStart site is my treasure trove.", avatar_url: "http://i.imgur.com/29yZRlU.jpg", zip: '94110')
-andrea.password = "trashcan"
+andrea = User.new(email: "acoravos@mba2017.hbs.edu", first_name: "Andrea", last_name: "Coravos", bio: "Group Ringleader", avatar_url: "http://i.imgur.com/29yZRlU.jpg", zip: '02163')
+andrea.password = "harvard"
 andrea.badge_collection = BadgeCollection.new
 andrea.save!
 #----------------------------------------------------------------------------------#

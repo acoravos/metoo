@@ -2508,3 +2508,1392 @@ Started GET "/assets/App.self-9b5b0fd0b41dc7255bd7145f53772b9ea94e04dc2273d35a9a
 
 
 Started GET "/assets/application.self-e4c9792ff61a2ba25000edaefd0be52638f1aaec2df7b1a862c401dbdf861ba5.js?body=1" for ::1 at 2015-11-14 01:04:34 -0500
+  [1m[36m (26.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (13.1ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20150807182543)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (22.9ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807182543"]]
+  [1m[36m (6.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCategories (20150807182657)
+  [1m[35m (6.2ms)[0m  BEGIN
+  [1m[36m (21.3ms)[0m  [1mCREATE TABLE "categories" ("id" serial primary key, "name" character varying, "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807182657"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCategoriesIssues (20150807183008)
+  [1m[35m (6.2ms)[0m  BEGIN
+  [1m[36m (7.4ms)[0m  [1mCREATE TABLE "categories_issues" ("id" serial primary key, "category_id" integer, "issue_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183008"]]
+  [1m[36m (5.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateIssues (20150807183227)
+  [1m[35m (6.1ms)[0m  BEGIN
+  [1m[36m (15.4ms)[0m  [1mCREATE TABLE "issues" ("id" serial primary key, "user_id" integer, "community_id" integer, "title" character varying, "description" text, "image_url" character varying, "latitude" character varying, "longitude" character varying, "status" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183227"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCommunities (20150807183453)
+  [1m[35m (6.2ms)[0m  BEGIN
+  [1m[36m (15.3ms)[0m  [1mCREATE TABLE "communities" ("id" serial primary key, "title" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183453"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUsersVotes (20150807183520)
+  [1m[35m (6.2ms)[0m  BEGIN
+  [1m[36m (9.1ms)[0m  [1mCREATE TABLE "users_votes" ("id" serial primary key, "user_id" integer, "issue_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183520"]]
+  [1m[36m (6.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFixes (20150807183759)
+  [1m[35m (6.3ms)[0m  BEGIN
+  [1m[36m (15.9ms)[0m  [1mCREATE TABLE "fixes" ("id" serial primary key, "user_id" integer, "issue_id" integer, "title" character varying, "description" text, "image_url" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183759"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateIssuesWatches (20150807183845)
+  [1m[35m (6.1ms)[0m  BEGIN
+  [1m[36m (9.6ms)[0m  [1mCREATE TABLE "issues_watches" ("id" serial primary key, "user_id" integer, "issue_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183845"]]
+  [1m[36m (11.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateIssueComments (20150807184806)
+  [1m[35m (6.3ms)[0m  BEGIN
+  [1m[36m (15.8ms)[0m  [1mCREATE TABLE "issue_comments" ("id" serial primary key, "issue_id" integer, "user_id" integer, "content" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807184806"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFixComments (20150807184824)
+  [1m[35m (6.1ms)[0m  BEGIN
+  [1m[36m (14.7ms)[0m  [1mCREATE TABLE "fix_comments" ("id" serial primary key, "fix_id" integer, "user_id" integer, "content" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807184824"]]
+  [1m[36m (5.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddInfoToUser (20150808025509)
+  [1m[35m (6.1ms)[0m  BEGIN
+  [1m[36m (6.4ms)[0m  [1mALTER TABLE "users" ADD "first_name" character varying[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "last_name" character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "latitude" character varying[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "longitude" character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "avatar_url" character varying[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "bio" character varying
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150808025509"]]
+  [1m[35m (6.2ms)[0m  COMMIT
+Migrating to AddZipToUser (20150809081158)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "users" ADD "zip" character varying
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150809081158"]]
+  [1m[35m (6.4ms)[0m  COMMIT
+Migrating to ChangeIssueStatusToOpenByDefault (20150809235504)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "issues" ALTER COLUMN "status" TYPE character varying
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "issues" ALTER COLUMN "status" SET DEFAULT 'open'[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150809235504"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateBadgeCollections (20150811225611)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (8.8ms)[0m  [1mCREATE TABLE "badge_collections" ("id" serial primary key, "user_id" integer, "first_issue" boolean DEFAULT 'f', "first_fix" boolean DEFAULT 'f', "five_issues" boolean DEFAULT 'f', "five_fixes" boolean DEFAULT 'f', "issue_fixed" boolean DEFAULT 'f', "five_point_issue" boolean DEFAULT 'f', "category_king" boolean DEFAULT 'f', "issue_comment" boolean DEFAULT 'f', "fix_comment" boolean DEFAULT 'f', "unanonymous" boolean DEFAULT 'f', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (6.4ms)[0m  CREATE  INDEX  "index_badge_collections_on_user_id" ON "badge_collections"  ("user_id")
+  [1m[36m (1.4ms)[0m  [1mALTER TABLE "badge_collections" ADD CONSTRAINT "fk_rails_9d994540e0"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150811225611"]]
+  [1m[36m (5.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'badge_collections'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'categories'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'categories_issues'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'communities'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'fix_comments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'fixes'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'issue_comments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'issues'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'issues_watches'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users_votes'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("email", "first_name", "last_name", "bio", "avatar_url", "zip", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "mmonovoukas@mba2017.hbs.edu"], ["first_name", "Mike"], ["last_name", "Monovoukas"], ["bio", "First time coder hacking for fun"], ["avatar_url", "http://imgur.com/62hJ6Br"], ["zip", "02115"], ["encrypted_password", "$2a$10$kr5T1QyWjD9ZIXDm9U3PnOCXBF5VOHOggcrTqJTpG3HHlvv0YsXA2"], ["created_at", "2015-11-14 17:37:44.967185"], ["updated_at", "2015-11-14 17:37:44.967185"]]
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "badge_collections" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 1], ["created_at", "2015-11-14 17:37:44.970620"], ["updated_at", "2015-11-14 17:37:44.970620"]]
+  [1m[36m (6.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "first_name", "last_name", "bio", "avatar_url", "zip", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "tim@fixstart.io"], ["first_name", "Tim"], ["last_name", "Cannady"], ["bio", "I'm passionate about building meaningful products. I have a passion for community and fixing things. If it ain't broke, break it so I can fix it please!"], ["avatar_url", "http://i.imgur.com/iPtlfAt.jpg"], ["zip", "94110"], ["encrypted_password", "$2a$10$XKHZ4cDsBUowTawQCQyGh.OpfRJtlrSWB6P/yUVsnDJYM.JPIKUhG"], ["created_at", "2015-11-14 17:37:45.046027"], ["updated_at", "2015-11-14 17:37:45.046027"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "badge_collections" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 2], ["created_at", "2015-11-14 17:37:45.047097"], ["updated_at", "2015-11-14 17:37:45.047097"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "first_name", "last_name", "bio", "avatar_url", "zip", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "jacob@fixstart.io"], ["first_name", "Jacob"], ["last_name", "Rogers"], ["bio", "I carry a multitool with me everywhere I go so I can fix on the fly. If it's broken I will take it apart and put it back together. FixStart is my battlestation for conquering broken crap. "], ["avatar_url", "http://i.imgur.com/9E5LhP9.png"], ["zip", "94107"], ["encrypted_password", "$2a$10$zdWZMndYmfZ/4sNe5ad3Hu5PEJeXEn233zI6zdIpp8q2f3BkW43wK"], ["created_at", "2015-11-14 17:37:45.115403"], ["updated_at", "2015-11-14 17:37:45.115403"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "badge_collections" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 3], ["created_at", "2015-11-14 17:37:45.116353"], ["updated_at", "2015-11-14 17:37:45.116353"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "first_name", "last_name", "bio", "avatar_url", "zip", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "andrea@fixstart.io"], ["first_name", "Andrea"], ["last_name", "Coravos"], ["bio", "I'm infamous with my friends and family for my 'fix-it' box. If something is broken I want to figure out a way to fix it. The FixStart site is my treasure trove."], ["avatar_url", "http://i.imgur.com/29yZRlU.jpg"], ["zip", "94110"], ["encrypted_password", "$2a$10$n1TkfoqlvPsIlz8cHX.j0erKgQ5Fqq9LH9qFDBIFZDYJYSiVQgnxS"], ["created_at", "2015-11-14 17:37:45.184727"], ["updated_at", "2015-11-14 17:37:45.184727"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "badge_collections" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 4], ["created_at", "2015-11-14 17:37:45.185696"], ["updated_at", "2015-11-14 17:37:45.185696"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "communities" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "global"], ["created_at", "2015-11-14 17:37:45.193549"], ["updated_at", "2015-11-14 17:37:45.193549"]]
+  [1m[35m (6.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["user_id", 2], ["community_id", 1], ["title", "Trash cans knocked over"], ["description", "The wind knocked down all the trashcans. Garbage is scattered all over the street and it looks awful. Should only take about 10 minutes to pick it all up."], ["image_url", "http://i.imgur.com/EL8I4re.jpg"], ["latitude", "37.753276150711926"], ["longitude", "-122.41456031799316"], ["status", "closed"], ["created_at", "2015-11-14 17:37:45.217079"], ["updated_at", "2015-11-14 17:37:45.217079"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["user_id", 1], ["community_id", 1], ["title", "Busted fence"], ["description", "This fence has been broken for a long time. It would be great if somebody could fix it up. Most of the lumber is still there, it probably just needs some nails. Bring a hammer."], ["image_url", "http://i.imgur.com/MDgWvxy.jpg"], ["latitude", "37.779805600955584"], ["longitude", "-122.47713088989258"], ["created_at", "2015-11-14 17:37:45.225931"], ["updated_at", "2015-11-14 17:37:45.225931"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["user_id", 3], ["community_id", 1], ["title", "Graffiti on the wall"], ["description", "Some dumb punks tagged up this wall a couple weeks ago and I'm tired of looking at it."], ["image_url", "http://i.imgur.com/QGndXZr.jpg"], ["latitude", "37.78821704497665"], ["longitude", "-122.43327140808104"], ["status", "closed"], ["created_at", "2015-11-14 17:37:45.228780"], ["updated_at", "2015-11-14 17:37:45.228780"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["user_id", 4], ["community_id", 1], ["title", "Abandoned car seat"], ["description", "This car seat has been here for a month. You'll probably need a truck to move it. Please get it out of here, it's an eyesore."], ["image_url", "http://i.imgur.com/PlxnYfH.jpg"], ["latitude", "37.78414711095678"], ["longitude", "-122.46348381042479"], ["created_at", "2015-11-14 17:37:45.230964"], ["updated_at", "2015-11-14 17:37:45.230964"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["user_id", 1], ["community_id", 1], ["title", "Old, rundown lawn"], ["description", "Mr. Brewster's lawn looks bad, but he's too old to fix it himself. I know he'd appreciate it if a couple of Good Samaritans helped him out."], ["image_url", "http://i.imgur.com/1y58BFq.jpg"], ["latitude", "37.77464972662077"], ["longitude", "-122.45438575744627"], ["created_at", "2015-11-14 17:37:45.232953"], ["updated_at", "2015-11-14 17:37:45.232953"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["user_id", 2], ["community_id", 1], ["title", "Downed power line"], ["description", "The storm knocked this power line down! Super dangerous, I've contacted the city of SF about it."], ["image_url", "http://i.imgur.com/aLznpvJ.jpg"], ["latitude", "37.71383757727602"], ["longitude", "-122.45412826538086"], ["created_at", "2015-11-14 17:37:45.234830"], ["updated_at", "2015-11-14 17:37:45.234830"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["user_id", 3], ["community_id", 1], ["title", "Tree fell over"], ["description", "Storm knocked down a tree! The thing is huge, you'll definitely need a chainsaw to cut it up and haul it out of here. Bring help."], ["image_url", "http://i.imgur.com/Hmjr16m.jpg"], ["latitude", "37.745267951150964"], ["longitude", "-122.47421264648439"], ["created_at", "2015-11-14 17:37:45.236556"], ["updated_at", "2015-11-14 17:37:45.236556"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["user_id", 4], ["community_id", 1], ["title", "Door off hinges"], ["description", "This door came off its hinges. The screws don't seem to be anywhere around here, probably needs new ones anyway. Screwdriver / drill required."], ["image_url", "http://i.imgur.com/dCig2ZL.jpg"], ["latitude", "37.75504055274351"], ["longitude", "-122.41601943969727"], ["created_at", "2015-11-14 17:37:45.238380"], ["updated_at", "2015-11-14 17:37:45.238380"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "fixes" ("user_id", "issue_id", "title", "description", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["user_id", 4], ["issue_id", 1], ["title", "Picked up trashcan"], ["description", "Got most of the trash, but the can keeps falling over."], ["image_url", "http://i.imgur.com/VnowEZ2.jpg"], ["created_at", "2015-11-14 17:37:45.249736"], ["updated_at", "2015-11-14 17:37:45.249736"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "fixes" ("user_id", "issue_id", "title", "description", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["user_id", 3], ["issue_id", 1], ["title", "Fixed it!"], ["description", "It took a litte bit of industrial adhesive, but I got the can to stay again."], ["image_url", "http://i.imgur.com/aYluzcZ.jpg"], ["created_at", "2015-11-14 17:37:45.258521"], ["updated_at", "2015-11-14 17:37:45.258521"]]
+  [1m[35m (6.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "fixes" ("user_id", "issue_id", "title", "description", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["user_id", 1], ["issue_id", 3], ["title", "Graffiti gone now"], ["description", "Got my friends together and we scrubbed the wall. It's looking pretty good now!"], ["image_url", "http://i.imgur.com/TE2OAXt.jpg"], ["created_at", "2015-11-14 17:37:45.267629"], ["updated_at", "2015-11-14 17:37:45.267629"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "fixes" ("user_id", "issue_id", "title", "description", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["user_id", 2], ["issue_id", 5], ["title", "Fixed up the lawn"], ["description", "I had some sod leftover from my lawn reno. I knocked on Mr. Brewsters door and asked him if I could fix up his lawn. He was really great, sweet man he is."], ["image_url", "http://i.imgur.com/Iu2pQN3.jpg"], ["created_at", "2015-11-14 17:37:45.270434"], ["updated_at", "2015-11-14 17:37:45.270434"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "fix_comments" ("fix_id", "user_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["fix_id", 1], ["user_id", 3], ["content", "Thanks for getting the trash, I'll come by with some adhesive to stick the can back down."], ["created_at", "2015-11-14 17:37:45.278914"], ["updated_at", "2015-11-14 17:37:45.278914"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "fix_comments" ("fix_id", "user_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["fix_id", 1], ["user_id", 4], ["content", "Cool, thanks a lot!"], ["created_at", "2015-11-14 17:37:45.287395"], ["updated_at", "2015-11-14 17:37:45.287395"]]
+  [1m[35m (6.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "issue_comments" ("issue_id", "user_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["issue_id", 1], ["user_id", 1], ["content", "What an eyesore, somebody get on this."], ["created_at", "2015-11-14 17:37:45.303364"], ["updated_at", "2015-11-14 17:37:45.303364"]]
+  [1m[36m (6.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "issue_comments" ("issue_id", "user_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["issue_id", 1], ["user_id", 2], ["content", "Looks like it's all fixed now!"], ["created_at", "2015-11-14 17:37:45.312174"], ["updated_at", "2015-11-14 17:37:45.312174"]]
+  [1m[35m (6.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 1], ["issue_id", 1], ["created_at", "2015-11-14 17:37:45.327819"], ["updated_at", "2015-11-14 17:37:45.327819"]]
+  [1m[36m (6.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["issue_id", 2], ["created_at", "2015-11-14 17:37:45.336520"], ["updated_at", "2015-11-14 17:37:45.336520"]]
+  [1m[35m (6.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 1], ["issue_id", 3], ["created_at", "2015-11-14 17:37:45.345208"], ["updated_at", "2015-11-14 17:37:45.345208"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["issue_id", 4], ["created_at", "2015-11-14 17:37:45.347608"], ["updated_at", "2015-11-14 17:37:45.347608"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 2], ["issue_id", 5], ["created_at", "2015-11-14 17:37:45.349709"], ["updated_at", "2015-11-14 17:37:45.349709"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["issue_id", 1], ["created_at", "2015-11-14 17:37:45.351562"], ["updated_at", "2015-11-14 17:37:45.351562"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 3], ["issue_id", 2], ["created_at", "2015-11-14 17:37:45.353312"], ["updated_at", "2015-11-14 17:37:45.353312"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["issue_id", 3], ["created_at", "2015-11-14 17:37:45.354975"], ["updated_at", "2015-11-14 17:37:45.354975"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 4], ["issue_id", 1], ["created_at", "2015-11-14 17:37:45.356592"], ["updated_at", "2015-11-14 17:37:45.356592"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["issue_id", 2], ["created_at", "2015-11-14 17:37:45.358160"], ["updated_at", "2015-11-14 17:37:45.358160"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 1], ["issue_id", 1], ["created_at", "2015-11-14 17:37:45.364662"], ["updated_at", "2015-11-14 17:37:45.364662"]]
+  [1m[36m (6.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["issue_id", 2], ["created_at", "2015-11-14 17:37:45.373018"], ["updated_at", "2015-11-14 17:37:45.373018"]]
+  [1m[35m (6.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 1], ["issue_id", 3], ["created_at", "2015-11-14 17:37:45.381709"], ["updated_at", "2015-11-14 17:37:45.381709"]]
+  [1m[36m (5.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["issue_id", 4], ["created_at", "2015-11-14 17:37:45.389267"], ["updated_at", "2015-11-14 17:37:45.389267"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 2], ["issue_id", 5], ["created_at", "2015-11-14 17:37:45.391881"], ["updated_at", "2015-11-14 17:37:45.391881"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["issue_id", 6], ["created_at", "2015-11-14 17:37:45.394077"], ["updated_at", "2015-11-14 17:37:45.394077"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 3], ["issue_id", 7], ["created_at", "2015-11-14 17:37:45.396040"], ["updated_at", "2015-11-14 17:37:45.396040"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["issue_id", 8], ["created_at", "2015-11-14 17:37:45.397725"], ["updated_at", "2015-11-14 17:37:45.397725"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 4], ["issue_id", 1], ["created_at", "2015-11-14 17:37:45.399349"], ["updated_at", "2015-11-14 17:37:45.399349"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["issue_id", 2], ["created_at", "2015-11-14 17:37:45.400896"], ["updated_at", "2015-11-14 17:37:45.400896"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Heavy"], ["description", "Our hero will need to lift >50 lbs."], ["created_at", "2015-11-14 17:37:45.408306"], ["updated_at", "2015-11-14 17:37:45.408306"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Very Heavy"], ["description", "Our hero will need to lift >100 lbs."], ["created_at", "2015-11-14 17:37:45.416705"], ["updated_at", "2015-11-14 17:37:45.416705"]]
+  [1m[35m (6.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Dirty"], ["description", "Our hero will need to clean the area or item."], ["created_at", "2015-11-14 17:37:45.425447"], ["updated_at", "2015-11-14 17:37:45.425447"]]
+  [1m[36m (5.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Tools"], ["description", "Our hero will need to bring a tool (e.g., screwdriver, hammer). See description for the submitter’s opinion for what tools are required.."], ["created_at", "2015-11-14 17:37:45.433048"], ["updated_at", "2015-11-14 17:37:45.433048"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Yard Work & Removal"], ["description", "Our hero can clean up the community area and remove any yard waste or rubbish."], ["created_at", "2015-11-14 17:37:45.435631"], ["updated_at", "2015-11-14 17:37:45.435631"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "General Handyman"], ["description", "Our hero would perform minor repairs."], ["created_at", "2015-11-14 17:37:45.437523"], ["updated_at", "2015-11-14 17:37:45.437523"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Escalate"], ["description", "This issue is bigger than what someone in our community can solve, and needs a hero to alert the city / public officials."], ["created_at", "2015-11-14 17:37:45.439245"], ["updated_at", "2015-11-14 17:37:45.439245"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Uncategorized"], ["description", "A home for all orphaned fixes."], ["created_at", "2015-11-14 17:37:45.440861"], ["updated_at", "2015-11-14 17:37:45.440861"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 1], ["issue_id", 1], ["created_at", "2015-11-14 17:37:45.466920"], ["updated_at", "2015-11-14 17:37:45.466920"]]
+  [1m[36m (6.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 1], ["issue_id", 4], ["created_at", "2015-11-14 17:37:45.476356"], ["updated_at", "2015-11-14 17:37:45.476356"]]
+  [1m[35m (6.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 2], ["issue_id", 7], ["created_at", "2015-11-14 17:37:45.486552"], ["updated_at", "2015-11-14 17:37:45.486552"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 3], ["issue_id", 1], ["created_at", "2015-11-14 17:37:45.489889"], ["updated_at", "2015-11-14 17:37:45.489889"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 3], ["issue_id", 3], ["created_at", "2015-11-14 17:37:45.492228"], ["updated_at", "2015-11-14 17:37:45.492228"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 4], ["issue_id", 2], ["created_at", "2015-11-14 17:37:45.494670"], ["updated_at", "2015-11-14 17:37:45.494670"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 4], ["issue_id", 8], ["created_at", "2015-11-14 17:37:45.496567"], ["updated_at", "2015-11-14 17:37:45.496567"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 5], ["issue_id", 7], ["created_at", "2015-11-14 17:37:45.498638"], ["updated_at", "2015-11-14 17:37:45.498638"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 5], ["issue_id", 5], ["created_at", "2015-11-14 17:37:45.500366"], ["updated_at", "2015-11-14 17:37:45.500366"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 6], ["issue_id", 8], ["created_at", "2015-11-14 17:37:45.502452"], ["updated_at", "2015-11-14 17:37:45.502452"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 7], ["issue_id", 6], ["created_at", "2015-11-14 17:37:45.504605"], ["updated_at", "2015-11-14 17:37:45.504605"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 7], ["issue_id", 7], ["created_at", "2015-11-14 17:37:45.506269"], ["updated_at", "2015-11-14 17:37:45.506269"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+
+
+Started GET "/" for ::1 at 2015-11-14 12:38:17 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mIssue Load (0.6ms)[0m  SELECT  "issues".* FROM "issues"  ORDER BY "issues"."id" DESC LIMIT 4
+  [1m[36mCategory Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 5]]
+  [1m[35mCategory Load (0.2ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 5]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 5]]
+  [1m[36mCategory Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 6]]
+  [1m[35mCategory Load (0.3ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 6]]
+  [1m[36mCategory Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 7]]
+  [1m[35mCategory Load (0.3ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 7]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 7]]
+  [1m[36mCategory Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 8]]
+  [1m[35mCategory Load (0.3ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 8]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 8]]
+Processing by WelcomeController#index as HTML
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "issues".* FROM "issues"  ORDER BY "issues"."id" DESC LIMIT 4[0m
+  [1m[35mCategory Exists (0.4ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 5]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 5]]
+  [1m[35mCategory Exists (0.4ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 6]]
+  [1m[35mCategory Exists (0.3ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 7]]
+  [1m[35mCategory Exists (0.3ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 8]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 8]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 5]]
+  Rendered welcome/index.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 5476ms (Views: 4968.8ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/assets/components/AboutTeamComponents/AboutTeamShow.self-ce24462489d647a7f7ac253b43f164ed998d02dc3907cdfbf44188b95848b752.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/AboutTeamComponents/CategoryDescriptions.self-23707ac32691d450d9c6efd869f9f61593050caaf0116abe84b4d1e358dc2018.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/DashBoardComponents/DashBoard.self-88bd319a7cae91a7785dd91a26d5971b99e05ccf50dfcf5dbfd557b7c6da6ec0.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/DiscoverComponents/Discover.self-56db2bb4f4b621ff8f9ebc25ba445acabc14991e2ff1f3596bd33f4886fa08a0.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/AboutTeamComponents/CommunityStandards.self-3f82c3c1f5813363ed609bb49b64ef23aaa4556996615698d4ac58db8d3c53ce.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/FixNewComponents/FixNew.self-442ba575cc6bfbdc9d0a150e99aae38f8aaf48d769f0179b27315b05a83f4bbc.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/FixShowComponents/FixShow.self-ca4794f7c963593a8763d2298ef5a637ba30ab11091b89fe75c6df845055467a.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/IssueShow.self-7a8d28ab9e51082ac36f2918491ba8f82a636ae7e1b6b965dfaec8d4d9d1c856.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/IssueHeader.self-7cde2e90d5e1d32bb06025b9eae91bdb032eeed247c14874dd60823024035214.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/IssueNewComponents/IssueNew.self-521d9dd5324c464efd40d313f6f5562b7a5c0e57932a3cf229d25720e53867e8.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/IssueVotes.self-da06dc0a73206dfd6ed8463b44f9de8e022702d87e3bcc0d1c02087364fd5414.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/LayoutComponents/Header.self-5e00eccf05c791cf646cf525ac690b60f7c33398871c78baf8bda4e414e2699e.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/LayoutComponents/SplashFooter.self-f7670cf6173b4ff7a0d088b8385b1d61252437ecc802cb46ab52f9a750f3771c.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/SplashPageComponents/SplashHeader.self-f1d1b713695f27a7487d4f37ae34aae67d72feb679f20600b361bec6beaf5e96.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserProfileCard.self-8332f8024788f3c7f06fea788af1784ac3b00bf0e0bb50fdb8be0717725af202.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserShow.self-48cef67b632966f18e864d6f220c48e00c2112500b080fd499c62673c07538a8.js?body=1" for ::1 at 2015-11-14 12:38:23 -0500
+
+
+Started GET "/users/sign_in" for ::1 at 2015-11-14 12:38:33 -0500
+Processing by Users::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (247.7ms)
+Completed 200 OK in 577ms (Views: 574.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2015-11-14 12:38:46 -0500
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ohxxeDyPo0sC4Z/GKrSNAN9jKmsYSy6WaB3q+DigNhCXec/ahwEtaKt0BolGlBmH49cqfFCEDXDo6Ug1upp6WQ==", "user"=>{"email"=>"mmonovoukas@mba2017.hbs.edu", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "mmonovoukas@mba2017.hbs.edu"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = $7[0m  [["last_sign_in_at", "2015-11-14 17:38:47.041949"], ["current_sign_in_at", "2015-11-14 17:38:47.041949"], ["last_sign_in_ip", "::1/128"], ["current_sign_in_ip", "::1/128"], ["sign_in_count", 1], ["updated_at", "2015-11-14 17:38:47.043165"], ["id", 1]]
+  [1m[35m (6.1ms)[0m  COMMIT
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 99ms (ActiveRecord: 6.9ms)
+
+
+Started GET "/dashboard" for ::1 at 2015-11-14 12:38:47 -0500
+Processing by WelcomeController#show as HTML
+  [1m[36mUser Load (6.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mIssue Load (0.4ms)[0m  SELECT  "issues".* FROM "issues"  ORDER BY "issues"."id" DESC LIMIT 4
+  [1m[36mCategory Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 5]]
+  [1m[35mCategory Load (0.3ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 5]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 5]]
+  [1m[36mCategory Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 6]]
+  [1m[35mCategory Load (0.3ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 6]]
+  [1m[36mCategory Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 7]]
+  [1m[35mCategory Load (0.2ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 7]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 7]]
+  [1m[36mCategory Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 8]]
+  [1m[35mCategory Load (0.2ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 8]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 8]]
+  [1m[36mIssue Load (0.4ms)[0m  [1mSELECT "issues".* FROM "issues"[0m
+  [1m[35mCategory Exists (0.2ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 1]]
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 1]]
+  [1m[36mCategory Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 2]]
+  [1m[35mCategory Load (0.2ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 2]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 2]]
+  [1m[35mCategory Exists (0.2ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 3]]
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 3]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 3]]
+  [1m[36mCategory Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 4]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 4]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 4]]
+  [1m[35mCategory Exists (0.3ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 5]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 5]]
+  [1m[36mCategory Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 6]]
+  [1m[35mCategory Exists (0.3ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 7]]
+  [1m[36mCategory Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 8]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 8]]
+  Rendered welcome/show.html.erb within layouts/application (2.4ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "issues".* FROM "issues"  ORDER BY "issues"."id" DESC LIMIT 4
+  [1m[36mCategory Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 5]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 5]]
+  [1m[36mCategory Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 6]]
+  [1m[36mCategory Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 7]]
+  [1m[36mCategory Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 8]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 8]]
+Completed 200 OK in 2056ms (Views: 728.7ms | ActiveRecord: 14.7ms)
+
+
+Started GET "/profile" for ::1 at 2015-11-14 12:39:01 -0500
+Processing by ProfileController#show as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mBadgeCollection Load (0.3ms)[0m  SELECT  "badge_collections".* FROM "badge_collections" WHERE "badge_collections"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mIssue Load (0.2ms)[0m  [1mSELECT "issues".* FROM "issues" WHERE "issues"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mFix Load (0.2ms)[0m  SELECT "fixes".* FROM "fixes" WHERE "fixes"."issue_id" = $1  [["issue_id", 2]]
+  [1m[36mFix Load (0.1ms)[0m  [1mSELECT "fixes".* FROM "fixes" WHERE "fixes"."issue_id" = $1[0m  [["issue_id", 5]]
+  [1m[35mUsersVote Load (0.2ms)[0m  SELECT "users_votes".* FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 2]]
+  [1m[36mUsersVote Load (0.1ms)[0m  [1mSELECT "users_votes".* FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 5]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "badge_collections" SET "issue_fixed" = $1, "updated_at" = $2 WHERE "badge_collections"."id" = $3[0m  [["issue_fixed", "t"], ["updated_at", "2015-11-14 17:39:01.070497"], ["id", 1]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "badge_collections" SET "unanonymous" = $1, "updated_at" = $2 WHERE "badge_collections"."id" = $3  [["unanonymous", "t"], ["updated_at", "2015-11-14 17:39:01.072673"], ["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 38ms (ActiveRecord: 4.8ms)
+
+
+Started GET "/users/1" for ::1 at 2015-11-14 12:39:01 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mBadgeCollection Load (0.2ms)[0m  [1mSELECT  "badge_collections".* FROM "badge_collections" WHERE "badge_collections"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mIssue Load (0.1ms)[0m  [1mSELECT "issues".* FROM "issues" WHERE "issues"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 2]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 5]]
+  [1m[35mFix Load (0.1ms)[0m  SELECT "fixes".* FROM "fixes" WHERE "fixes"."user_id" = $1  [["user_id", 1]]
+  [1m[36mIssuesWatch Load (0.2ms)[0m  [1mSELECT "issues_watches".* FROM "issues_watches" WHERE "issues_watches"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mIssue Load (0.2ms)[0m  SELECT  "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mIssue Load (0.1ms)[0m  [1mSELECT  "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mIssue Load (0.1ms)[0m  SELECT  "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT 1  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (3.9ms)
+  [1m[36mIssue Load (0.3ms)[0m  [1mSELECT  "issues".* FROM "issues"  ORDER BY "issues"."id" DESC LIMIT 4[0m
+  [1m[35mCategory Exists (0.1ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 5]]
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 5]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 5]]
+  [1m[35mCategory Exists (0.2ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 6]]
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 6]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 6]]
+  [1m[35mCategory Exists (0.3ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 7]]
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 7]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 7]]
+  [1m[35mCategory Exists (0.2ms)[0m  SELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1  [["issue_id", 8]]
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1[0m  [["issue_id", 8]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 8]]
+Completed 200 OK in 649ms (Views: 625.9ms | ActiveRecord: 5.6ms)
+  [1m[36m (2.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20150807182543)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (3.1ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.7ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36m (0.6ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807182543"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCategories (20150807182657)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.5ms)[0m  [1mCREATE TABLE "categories" ("id" serial primary key, "name" character varying, "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807182657"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCategoriesIssues (20150807183008)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "categories_issues" ("id" serial primary key, "category_id" integer, "issue_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183008"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateIssues (20150807183227)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (2.5ms)[0m  [1mCREATE TABLE "issues" ("id" serial primary key, "user_id" integer, "community_id" integer, "title" character varying, "description" text, "image_url" character varying, "latitude" character varying, "longitude" character varying, "status" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183227"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCommunities (20150807183453)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.4ms)[0m  [1mCREATE TABLE "communities" ("id" serial primary key, "title" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183453"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUsersVotes (20150807183520)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "users_votes" ("id" serial primary key, "user_id" integer, "issue_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183520"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFixes (20150807183759)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (2.5ms)[0m  [1mCREATE TABLE "fixes" ("id" serial primary key, "user_id" integer, "issue_id" integer, "title" character varying, "description" text, "image_url" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183759"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateIssuesWatches (20150807183845)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "issues_watches" ("id" serial primary key, "user_id" integer, "issue_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807183845"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateIssueComments (20150807184806)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (2.6ms)[0m  [1mCREATE TABLE "issue_comments" ("id" serial primary key, "issue_id" integer, "user_id" integer, "content" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807184806"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFixComments (20150807184824)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (4.5ms)[0m  [1mCREATE TABLE "fix_comments" ("id" serial primary key, "fix_id" integer, "user_id" integer, "content" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807184824"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddInfoToUser (20150808025509)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "first_name" character varying[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "last_name" character varying
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "users" ADD "latitude" character varying[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "longitude" character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "avatar_url" character varying[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "bio" character varying
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150808025509"]]
+  [1m[35m (0.2ms)[0m  COMMIT
+Migrating to AddZipToUser (20150809081158)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "zip" character varying
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150809081158"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Migrating to ChangeIssueStatusToOpenByDefault (20150809235504)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "issues" ALTER COLUMN "status" TYPE character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "issues" ALTER COLUMN "status" SET DEFAULT 'open'[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150809235504"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateBadgeCollections (20150811225611)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (2.2ms)[0m  [1mCREATE TABLE "badge_collections" ("id" serial primary key, "user_id" integer, "first_issue" boolean DEFAULT 'f', "first_fix" boolean DEFAULT 'f', "five_issues" boolean DEFAULT 'f', "five_fixes" boolean DEFAULT 'f', "issue_fixed" boolean DEFAULT 'f', "five_point_issue" boolean DEFAULT 'f', "category_king" boolean DEFAULT 'f', "issue_comment" boolean DEFAULT 'f', "fix_comment" boolean DEFAULT 'f', "unanonymous" boolean DEFAULT 'f', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.7ms)[0m  CREATE  INDEX  "index_badge_collections_on_user_id" ON "badge_collections"  ("user_id")
+  [1m[36m (1.3ms)[0m  [1mALTER TABLE "badge_collections" ADD CONSTRAINT "fk_rails_9d994540e0"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150811225611"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'badge_collections'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'categories'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'categories_issues'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'communities'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'fix_comments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'fixes'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'issue_comments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'issues'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'issues_watches'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users_votes'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("email", "first_name", "last_name", "bio", "avatar_url", "zip", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "mmonovoukas@mba2017.hbs.edu"], ["first_name", "Mike"], ["last_name", "Monovoukas"], ["bio", "First time coder hacking for fun"], ["avatar_url", "http://i.imgur.com/62hJ6Br.jpg"], ["zip", "02115"], ["encrypted_password", "$2a$10$sQrLGllTPDKvGvJ1m2GrtOvcLuJ6T1YCAV/wPsDPEyRewHa4iVY0K"], ["created_at", "2015-11-14 17:42:09.492840"], ["updated_at", "2015-11-14 17:42:09.492840"]]
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "badge_collections" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 1], ["created_at", "2015-11-14 17:42:09.496391"], ["updated_at", "2015-11-14 17:42:09.496391"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("email", "first_name", "last_name", "bio", "avatar_url", "zip", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "tim@fixstart.io"], ["first_name", "Tim"], ["last_name", "Cannady"], ["bio", "I'm passionate about building meaningful products. I have a passion for community and fixing things. If it ain't broke, break it so I can fix it please!"], ["avatar_url", "http://i.imgur.com/iPtlfAt.jpg"], ["zip", "94110"], ["encrypted_password", "$2a$10$.Fc3qYuknn8s.1i6ueQ/vuW3tghGRmlFb4nVf4H5gUA6r5HAAWJYK"], ["created_at", "2015-11-14 17:42:09.563653"], ["updated_at", "2015-11-14 17:42:09.563653"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "badge_collections" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 2], ["created_at", "2015-11-14 17:42:09.564797"], ["updated_at", "2015-11-14 17:42:09.564797"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "first_name", "last_name", "bio", "avatar_url", "zip", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "jacob@fixstart.io"], ["first_name", "Jacob"], ["last_name", "Rogers"], ["bio", "I carry a multitool with me everywhere I go so I can fix on the fly. If it's broken I will take it apart and put it back together. FixStart is my battlestation for conquering broken crap. "], ["avatar_url", "http://i.imgur.com/9E5LhP9.png"], ["zip", "94107"], ["encrypted_password", "$2a$10$Ug3gddXC6l.lGuDmKXiY2OBV9FeXKhwMUG3Hb23eysoPRFMz/TICO"], ["created_at", "2015-11-14 17:42:09.628826"], ["updated_at", "2015-11-14 17:42:09.628826"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "badge_collections" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 3], ["created_at", "2015-11-14 17:42:09.629804"], ["updated_at", "2015-11-14 17:42:09.629804"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "first_name", "last_name", "bio", "avatar_url", "zip", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "andrea@fixstart.io"], ["first_name", "Andrea"], ["last_name", "Coravos"], ["bio", "I'm infamous with my friends and family for my 'fix-it' box. If something is broken I want to figure out a way to fix it. The FixStart site is my treasure trove."], ["avatar_url", "http://i.imgur.com/29yZRlU.jpg"], ["zip", "94110"], ["encrypted_password", "$2a$10$hD1QUVGwL.0zzSJz/Z1xs.PUSCvGGdc94hPmWvgMIWi3SdEOhXzEm"], ["created_at", "2015-11-14 17:42:09.693640"], ["updated_at", "2015-11-14 17:42:09.693640"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "badge_collections" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["user_id", 4], ["created_at", "2015-11-14 17:42:09.694579"], ["updated_at", "2015-11-14 17:42:09.694579"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "communities" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "global"], ["created_at", "2015-11-14 17:42:09.700245"], ["updated_at", "2015-11-14 17:42:09.700245"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["user_id", 2], ["community_id", 1], ["title", "Trash cans knocked over"], ["description", "The wind knocked down all the trashcans. Garbage is scattered all over the street and it looks awful. Should only take about 10 minutes to pick it all up."], ["image_url", "http://i.imgur.com/EL8I4re.jpg"], ["latitude", "37.753276150711926"], ["longitude", "-122.41456031799316"], ["status", "closed"], ["created_at", "2015-11-14 17:42:09.712536"], ["updated_at", "2015-11-14 17:42:09.712536"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["user_id", 1], ["community_id", 1], ["title", "Busted fence"], ["description", "This fence has been broken for a long time. It would be great if somebody could fix it up. Most of the lumber is still there, it probably just needs some nails. Bring a hammer."], ["image_url", "http://i.imgur.com/MDgWvxy.jpg"], ["latitude", "37.779805600955584"], ["longitude", "-122.47713088989258"], ["created_at", "2015-11-14 17:42:09.714771"], ["updated_at", "2015-11-14 17:42:09.714771"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["user_id", 3], ["community_id", 1], ["title", "Graffiti on the wall"], ["description", "Some dumb punks tagged up this wall a couple weeks ago and I'm tired of looking at it."], ["image_url", "http://i.imgur.com/QGndXZr.jpg"], ["latitude", "37.78821704497665"], ["longitude", "-122.43327140808104"], ["status", "closed"], ["created_at", "2015-11-14 17:42:09.716462"], ["updated_at", "2015-11-14 17:42:09.716462"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["user_id", 4], ["community_id", 1], ["title", "Abandoned car seat"], ["description", "This car seat has been here for a month. You'll probably need a truck to move it. Please get it out of here, it's an eyesore."], ["image_url", "http://i.imgur.com/PlxnYfH.jpg"], ["latitude", "37.78414711095678"], ["longitude", "-122.46348381042479"], ["created_at", "2015-11-14 17:42:09.718032"], ["updated_at", "2015-11-14 17:42:09.718032"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["user_id", 1], ["community_id", 1], ["title", "Old, rundown lawn"], ["description", "Mr. Brewster's lawn looks bad, but he's too old to fix it himself. I know he'd appreciate it if a couple of Good Samaritans helped him out."], ["image_url", "http://i.imgur.com/1y58BFq.jpg"], ["latitude", "37.77464972662077"], ["longitude", "-122.45438575744627"], ["created_at", "2015-11-14 17:42:09.719640"], ["updated_at", "2015-11-14 17:42:09.719640"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["user_id", 2], ["community_id", 1], ["title", "Downed power line"], ["description", "The storm knocked this power line down! Super dangerous, I've contacted the city of SF about it."], ["image_url", "http://i.imgur.com/aLznpvJ.jpg"], ["latitude", "37.71383757727602"], ["longitude", "-122.45412826538086"], ["created_at", "2015-11-14 17:42:09.721340"], ["updated_at", "2015-11-14 17:42:09.721340"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["user_id", 3], ["community_id", 1], ["title", "Tree fell over"], ["description", "Storm knocked down a tree! The thing is huge, you'll definitely need a chainsaw to cut it up and haul it out of here. Bring help."], ["image_url", "http://i.imgur.com/Hmjr16m.jpg"], ["latitude", "37.745267951150964"], ["longitude", "-122.47421264648439"], ["created_at", "2015-11-14 17:42:09.722986"], ["updated_at", "2015-11-14 17:42:09.722986"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issues" ("user_id", "community_id", "title", "description", "image_url", "latitude", "longitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["user_id", 4], ["community_id", 1], ["title", "Door off hinges"], ["description", "This door came off its hinges. The screws don't seem to be anywhere around here, probably needs new ones anyway. Screwdriver / drill required."], ["image_url", "http://i.imgur.com/dCig2ZL.jpg"], ["latitude", "37.75504055274351"], ["longitude", "-122.41601943969727"], ["created_at", "2015-11-14 17:42:09.724578"], ["updated_at", "2015-11-14 17:42:09.724578"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "fixes" ("user_id", "issue_id", "title", "description", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["user_id", 4], ["issue_id", 1], ["title", "Picked up trashcan"], ["description", "Got most of the trash, but the can keeps falling over."], ["image_url", "http://i.imgur.com/VnowEZ2.jpg"], ["created_at", "2015-11-14 17:42:09.732013"], ["updated_at", "2015-11-14 17:42:09.732013"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "fixes" ("user_id", "issue_id", "title", "description", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["user_id", 3], ["issue_id", 1], ["title", "Fixed it!"], ["description", "It took a litte bit of industrial adhesive, but I got the can to stay again."], ["image_url", "http://i.imgur.com/aYluzcZ.jpg"], ["created_at", "2015-11-14 17:42:09.734151"], ["updated_at", "2015-11-14 17:42:09.734151"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "fixes" ("user_id", "issue_id", "title", "description", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["user_id", 1], ["issue_id", 3], ["title", "Graffiti gone now"], ["description", "Got my friends together and we scrubbed the wall. It's looking pretty good now!"], ["image_url", "http://i.imgur.com/TE2OAXt.jpg"], ["created_at", "2015-11-14 17:42:09.735611"], ["updated_at", "2015-11-14 17:42:09.735611"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "fixes" ("user_id", "issue_id", "title", "description", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["user_id", 2], ["issue_id", 5], ["title", "Fixed up the lawn"], ["description", "I had some sod leftover from my lawn reno. I knocked on Mr. Brewsters door and asked him if I could fix up his lawn. He was really great, sweet man he is."], ["image_url", "http://i.imgur.com/Iu2pQN3.jpg"], ["created_at", "2015-11-14 17:42:09.737049"], ["updated_at", "2015-11-14 17:42:09.737049"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "fix_comments" ("fix_id", "user_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["fix_id", 1], ["user_id", 3], ["content", "Thanks for getting the trash, I'll come by with some adhesive to stick the can back down."], ["created_at", "2015-11-14 17:42:09.743029"], ["updated_at", "2015-11-14 17:42:09.743029"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "fix_comments" ("fix_id", "user_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["fix_id", 1], ["user_id", 4], ["content", "Cool, thanks a lot!"], ["created_at", "2015-11-14 17:42:09.745123"], ["updated_at", "2015-11-14 17:42:09.745123"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "issue_comments" ("issue_id", "user_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["issue_id", 1], ["user_id", 1], ["content", "What an eyesore, somebody get on this."], ["created_at", "2015-11-14 17:42:09.752691"], ["updated_at", "2015-11-14 17:42:09.752691"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issue_comments" ("issue_id", "user_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["issue_id", 1], ["user_id", 2], ["content", "Looks like it's all fixed now!"], ["created_at", "2015-11-14 17:42:09.754607"], ["updated_at", "2015-11-14 17:42:09.754607"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 1], ["issue_id", 1], ["created_at", "2015-11-14 17:42:09.760034"], ["updated_at", "2015-11-14 17:42:09.760034"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["issue_id", 2], ["created_at", "2015-11-14 17:42:09.762002"], ["updated_at", "2015-11-14 17:42:09.762002"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 1], ["issue_id", 3], ["created_at", "2015-11-14 17:42:09.763380"], ["updated_at", "2015-11-14 17:42:09.763380"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["issue_id", 4], ["created_at", "2015-11-14 17:42:09.764725"], ["updated_at", "2015-11-14 17:42:09.764725"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 2], ["issue_id", 5], ["created_at", "2015-11-14 17:42:09.766040"], ["updated_at", "2015-11-14 17:42:09.766040"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["issue_id", 1], ["created_at", "2015-11-14 17:42:09.767416"], ["updated_at", "2015-11-14 17:42:09.767416"]]
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 3], ["issue_id", 2], ["created_at", "2015-11-14 17:42:09.768702"], ["updated_at", "2015-11-14 17:42:09.768702"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["issue_id", 3], ["created_at", "2015-11-14 17:42:09.769993"], ["updated_at", "2015-11-14 17:42:09.769993"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 4], ["issue_id", 1], ["created_at", "2015-11-14 17:42:09.771279"], ["updated_at", "2015-11-14 17:42:09.771279"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users_votes" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["issue_id", 2], ["created_at", "2015-11-14 17:42:09.772519"], ["updated_at", "2015-11-14 17:42:09.772519"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 1], ["issue_id", 1], ["created_at", "2015-11-14 17:42:09.778162"], ["updated_at", "2015-11-14 17:42:09.778162"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["issue_id", 2], ["created_at", "2015-11-14 17:42:09.779936"], ["updated_at", "2015-11-14 17:42:09.779936"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 1], ["issue_id", 3], ["created_at", "2015-11-14 17:42:09.781314"], ["updated_at", "2015-11-14 17:42:09.781314"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["issue_id", 4], ["created_at", "2015-11-14 17:42:09.782576"], ["updated_at", "2015-11-14 17:42:09.782576"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 2], ["issue_id", 5], ["created_at", "2015-11-14 17:42:09.783872"], ["updated_at", "2015-11-14 17:42:09.783872"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["issue_id", 6], ["created_at", "2015-11-14 17:42:09.785108"], ["updated_at", "2015-11-14 17:42:09.785108"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 3], ["issue_id", 7], ["created_at", "2015-11-14 17:42:09.786434"], ["updated_at", "2015-11-14 17:42:09.786434"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["issue_id", 8], ["created_at", "2015-11-14 17:42:09.787677"], ["updated_at", "2015-11-14 17:42:09.787677"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["user_id", 4], ["issue_id", 1], ["created_at", "2015-11-14 17:42:09.788901"], ["updated_at", "2015-11-14 17:42:09.788901"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "issues_watches" ("user_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["issue_id", 2], ["created_at", "2015-11-14 17:42:09.790143"], ["updated_at", "2015-11-14 17:42:09.790143"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Heavy"], ["description", "Our hero will need to lift >50 lbs."], ["created_at", "2015-11-14 17:42:09.796289"], ["updated_at", "2015-11-14 17:42:09.796289"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Very Heavy"], ["description", "Our hero will need to lift >100 lbs."], ["created_at", "2015-11-14 17:42:09.798320"], ["updated_at", "2015-11-14 17:42:09.798320"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Dirty"], ["description", "Our hero will need to clean the area or item."], ["created_at", "2015-11-14 17:42:09.800330"], ["updated_at", "2015-11-14 17:42:09.800330"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Tools"], ["description", "Our hero will need to bring a tool (e.g., screwdriver, hammer). See description for the submitter’s opinion for what tools are required.."], ["created_at", "2015-11-14 17:42:09.801995"], ["updated_at", "2015-11-14 17:42:09.801995"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Yard Work & Removal"], ["description", "Our hero can clean up the community area and remove any yard waste or rubbish."], ["created_at", "2015-11-14 17:42:09.803753"], ["updated_at", "2015-11-14 17:42:09.803753"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "General Handyman"], ["description", "Our hero would perform minor repairs."], ["created_at", "2015-11-14 17:42:09.805370"], ["updated_at", "2015-11-14 17:42:09.805370"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Escalate"], ["description", "This issue is bigger than what someone in our community can solve, and needs a hero to alert the city / public officials."], ["created_at", "2015-11-14 17:42:09.806914"], ["updated_at", "2015-11-14 17:42:09.806914"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Uncategorized"], ["description", "A home for all orphaned fixes."], ["created_at", "2015-11-14 17:42:09.808412"], ["updated_at", "2015-11-14 17:42:09.808412"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 1], ["issue_id", 1], ["created_at", "2015-11-14 17:42:09.825139"], ["updated_at", "2015-11-14 17:42:09.825139"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 1], ["issue_id", 4], ["created_at", "2015-11-14 17:42:09.827650"], ["updated_at", "2015-11-14 17:42:09.827650"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 2], ["issue_id", 7], ["created_at", "2015-11-14 17:42:09.830155"], ["updated_at", "2015-11-14 17:42:09.830155"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 3], ["issue_id", 1], ["created_at", "2015-11-14 17:42:09.833250"], ["updated_at", "2015-11-14 17:42:09.833250"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 3], ["issue_id", 3], ["created_at", "2015-11-14 17:42:09.835356"], ["updated_at", "2015-11-14 17:42:09.835356"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 4], ["issue_id", 2], ["created_at", "2015-11-14 17:42:09.837665"], ["updated_at", "2015-11-14 17:42:09.837665"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 4], ["issue_id", 8], ["created_at", "2015-11-14 17:42:09.839521"], ["updated_at", "2015-11-14 17:42:09.839521"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 5], ["issue_id", 7], ["created_at", "2015-11-14 17:42:09.841399"], ["updated_at", "2015-11-14 17:42:09.841399"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 5], ["issue_id", 5], ["created_at", "2015-11-14 17:42:09.843086"], ["updated_at", "2015-11-14 17:42:09.843086"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 6], ["issue_id", 8], ["created_at", "2015-11-14 17:42:09.845194"], ["updated_at", "2015-11-14 17:42:09.845194"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["category_id", 7], ["issue_id", 6], ["created_at", "2015-11-14 17:42:09.847273"], ["updated_at", "2015-11-14 17:42:09.847273"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "categories_issues" ("category_id", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["category_id", 7], ["issue_id", 7], ["created_at", "2015-11-14 17:42:09.848953"], ["updated_at", "2015-11-14 17:42:09.848953"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+
+
+Started GET "/users/1" for ::1 at 2015-11-14 12:43:12 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mIssue Load (0.6ms)[0m  SELECT  "issues".* FROM "issues"  ORDER BY "issues"."id" DESC LIMIT 4
+  [1m[36mCategory Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 5]]
+  [1m[35mCategory Load (0.2ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 5]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 5]]
+  [1m[36mCategory Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 6]]
+  [1m[35mCategory Load (0.3ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 6]]
+  [1m[36mCategory Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 7]]
+  [1m[35mCategory Load (0.4ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 7]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 7]]
+  [1m[36mCategory Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 8]]
+  [1m[35mCategory Load (0.3ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 8]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 8]]
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mBadgeCollection Load (0.3ms)[0m  SELECT  "badge_collections".* FROM "badge_collections" WHERE "badge_collections"."user_id" = $1 LIMIT 1  [["user_id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mIssue Load (0.2ms)[0m  SELECT "issues".* FROM "issues" WHERE "issues"."user_id" = $1  [["user_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1[0m  [["issue_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 5]]
+  [1m[36mFix Load (0.3ms)[0m  [1mSELECT "fixes".* FROM "fixes" WHERE "fixes"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mIssuesWatch Load (0.3ms)[0m  SELECT "issues_watches".* FROM "issues_watches" WHERE "issues_watches"."user_id" = $1  [["user_id", 1]]
+  [1m[36mIssue Load (0.2ms)[0m  [1mSELECT  "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mIssue Load (0.1ms)[0m  SELECT  "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mIssue Load (0.1ms)[0m  [1mSELECT  "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (3.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "issues".* FROM "issues"  ORDER BY "issues"."id" DESC LIMIT 4
+  [1m[36mCategory Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 5]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 5]]
+  [1m[36mCategory Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 6]]
+  [1m[36mCategory Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 7]]
+  [1m[36mCategory Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1 LIMIT 1[0m  [["issue_id", 8]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" INNER JOIN "categories_issues" ON "categories"."id" = "categories_issues"."category_id" WHERE "categories_issues"."issue_id" = $1  ORDER BY "categories"."id" ASC LIMIT 1  [["issue_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users_votes" WHERE "users_votes"."issue_id" = $1  [["issue_id", 8]]
+Completed 200 OK in 1170ms (Views: 1109.3ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/assets/application.self-d1917e1b0e16a1254414607a103d92820d4d623ca311b3a170ace770365ae70b.css?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/development-with-addons/react.self-eb8c71fecbd80164b57078dcf4c66c91c12c9c84b59938c485aea8b6ae3538c1.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/jquery_ujs.self-ca5248a2fad13d6bd58ea121318d642f195f0b2dd818b30615f785ff365e8d1f.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/react_ujs.self-9e59229b64f3630c4c2a3811ede5c049c720faf2cb91112e255eead642284727.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/semantic-ui/api.self-1e32b7aa6adbd1734fb6041bd32381e28cce6aca5ba506b269dda37721ee9bcf.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/semantic-ui/colorize.self-904f87357084ca2b8e32bc5b3f5d8e1dd927d753ae9b369f674ac43199d14f98.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/semantic-ui/embed.self-530fd315ddc22ed191518492a2dd30d71ab8565403a24904f998b4aa2b01f66d.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/semantic-ui/form.self-19004b05439015363ec71515aed5f7305d0f50be7bc33ed458385708e13ac491.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/semantic-ui/state.self-ba8c200df7a3be7eef8a0dbc47e7d1506472933b42d9ba14eba40727257a53b3.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/semantic-ui/visibility.self-71f823b1b59266ae8f5e6e1bc7e5f770a80891cc256e19b23fb07dd23d3d50ee.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/semantic-ui/visit.self-f6b9d873d3b931c907b26c207fef8a9ebc244cb3f8f10b1171fec1bcdd46bd9b.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/semantic-ui/site.self-0715a46a91f99409b252bf26f216ebd06c2473766508d2737e5a87825cff9fc8.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/semantic-ui/accordion.self-f02e8a229cc5d3b5a57e50349c06b1ecd838c0623b920a7b440c7fe91ced34aa.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/semantic-ui/checkbox.self-bfc21a1208b2a2eb073cc82c6a9698126929716d851533cb6c9ce90d301a80d2.js?body=1" for ::1 at 2015-11-14 12:43:13 -0500
+
+
+Started GET "/assets/semantic-ui/dimmer.self-fa3afe374ef2e859bc66df601c98c8ee40a93fcad9752780b9d28970fbf091e8.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/dropdown.self-2f09f635375fd66e0bba3cc52b3ae6125640511fa5785857e82da1de73cc7643.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/modal.self-fca0c9dc8b99a58d44bf44b68f15ef97a7e0fdad255b54895cfa20bba23504db.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/nag.self-4e27276d1f23482f4492a51e35bb43636ca5c3c99ca10e2c2ba2624cfb9972d7.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/popup.self-d5360993903643ac97f42aae2afbf2a78d0bc96b05bc1da1ad7b25fd0d34475e.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/progress.self-705106fdadb10d0e793204d83edc38b896fc8af4e9b2418768f17548167e771b.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/rating.self-2eb43fbe99f8781edfd7558e6be4933b01960a25982897cf9073733d626d7668.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/search.self-a8ee27c8e616ca18cbb6fe393be577e1436fa561dae9b8eb7b0f05a43d069e93.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/shape.self-40ba056c6d298c281da6470241500c9918dafadf710200b785bfe8a9b9599068.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/sidebar.self-9e321420597786ccc69ba84bf2b195cf08882f192420edc52bb8efbbca005a3b.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/sticky.self-c879f33383a63046bfb29a93a3ecaf3c252c28077074c613d3372abceea958a2.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/tab.self-061c8d32b522da18b0530b1774b9567661cd2b5f6bbc8e70edfc4cec2ba53fda.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/transition.self-db27b478ce3300f9051c4a35506b3ae6a18efb960d777fccc3346ba82897be0b.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui/video.self-11705175a979dac0b96b76b658123b336468f98009521dc9c7df31d18d994e08.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/semantic-ui.self-49cb2d2ab1323ea968a401fbd24a20d2b51aa1879c735f4b16f487797c9fa81f.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/AboutTeamComponents/AboutTeamShow.self-ce24462489d647a7f7ac253b43f164ed998d02dc3907cdfbf44188b95848b752.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/AboutTeamComponents/CategoryDescriptions.self-23707ac32691d450d9c6efd869f9f61593050caaf0116abe84b4d1e358dc2018.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/AboutTeamComponents/CommunityStandards.self-3f82c3c1f5813363ed609bb49b64ef23aaa4556996615698d4ac58db8d3c53ce.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/AboutTeamComponents/TeamMediaCards.self-033da11da1c2ba9719e942bfcbc4d2db7bd8c9c1a2787a5f42770dd75170d184.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/DashBoardComponents/DashBoard.self-88bd319a7cae91a7785dd91a26d5971b99e05ccf50dfcf5dbfd557b7c6da6ec0.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/DashBoardComponents/DashBoardMap.self-c6f586b0d7f0cb8068a9648b71aba361b068f04955f023a400e5d45a9e865ee1.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/DashBoardComponents/DashBoardNav.self-c90fab74f8acb87a39c1d274b19363d59cff56ef8bef7943bcdf21e00185559e.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/DiscoverComponents/Discover.self-56db2bb4f4b621ff8f9ebc25ba445acabc14991e2ff1f3596bd33f4886fa08a0.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/DiscoverComponents/DiscoverMap.self-0d526f594b5fbc6bad57b0a28d587ec2fbae5ca07b32588d8c77b286dc078a0d.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/DiscoverComponents/FilterBar.self-26da5233d2a6cabad47621ec8f0bee5a7040e5ffa1654f159061ea97b14697cb.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/DiscoverComponents/ResultItem.self-572540b53878497d450d68d84a3e5c0c2a1bea4ecbb537d2de1bb605e135538e.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/DiscoverComponents/ResultList.self-1a53570c956e579fac0e0da11451dbc60d107c04b5218a7355b3dfa8a4f00399.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/DiscoverComponents/SearchBar.self-933c3cb6e902b21cde3eb4125124976252262d1a0ba5fc3b02d7d4f982df81d7.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/FixNewComponents/FixForm.self-cc617e90964eb17cd2661181be785b2e9a04ceac0ee84d2521d3df409e596151.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/FixNewComponents/FixImage.self-30c44ef7b093fd5f73c87e6458b4ec5069052adedda8b7537f8c41d9a70b8e32.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/FixNewComponents/FixNew.self-442ba575cc6bfbdc9d0a150e99aae38f8aaf48d769f0179b27315b05a83f4bbc.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/FixShowComponents/FixHeader.self-c9f37e599ca21cbe36a67275120feafdaaf97794127d91c8bb6c9916e52b59d0.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/FixShowComponents/FixShow.self-ca4794f7c963593a8763d2298ef5a637ba30ab11091b89fe75c6df845055467a.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueNewComponents/CategoryDropdown.self-3903229d9d6be5ac77f90edb4c0ba352fb8892ece45b512923977f4f2b2d95c8.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueNewComponents/IssueForm.self-221af7109d1ba77562065cfb15af6478ce8540fc6f1b307667baa8313a6c88a3.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueNewComponents/IssueImage.self-6fff55d28d1e7e59bcb56f1a9e823ced7c07c456c6289c4a892c30b90810f671.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueNewComponents/IssueMap.self-342a42c42a4ad059e89e1f748ceaa57c5cf6a7ec459ff896d88b5fc12fd45820.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueNewComponents/IssueNew.self-521d9dd5324c464efd40d313f6f5562b7a5c0e57932a3cf229d25720e53867e8.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/FixItem.self-1e916daf9ebcc03cace20105884566d8da870484446c5113548f2c872a7c04c6.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/FixList.self-ef6a5fc5cb9c99ab957de5a9e94a85390d14f478916985933b00b658d1279e74.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/IssueCheckbox.self-3076d991651cbfe436880f40d2154b1c30f165463b44812f82abd6e0b00a2e56.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/IssueDescription.self-33bc23d3cee6b74e901f9f90a0d88d2459f15676d7bdb21187fcbd8b9909d152.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/IssueHeader.self-7cde2e90d5e1d32bb06025b9eae91bdb032eeed247c14874dd60823024035214.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/IssueOpenClose.self-5f3d95a925b1499dd8539a0b08dba5bc173de16390f5083888f300819cbff9f1.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/IssueShow.self-7a8d28ab9e51082ac36f2918491ba8f82a636ae7e1b6b965dfaec8d4d9d1c856.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/IssueShowMap.self-2309e74306bc789c25931e43ac35e2e47e982dc71c009b0b837dfa23c76238ed.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/IssueStatus.self-7bfb02192cd71e81bf96e9bc111159500cc1f12fa53fb8b26d3fa60301a66141.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/IssueVotes.self-da06dc0a73206dfd6ed8463b44f9de8e022702d87e3bcc0d1c02087364fd5414.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/IssueShowComponents/SubmitFixButton.self-3aab73867be1776a8a469358aa403f3cabeb57a1cc492680700b5192c85fc9e3.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/LayoutComponents/FixedMenuTemplate.self-c2493c7efadf00b1cb4c4c9ae2f0896c57523903c32a35fdd0b9dadd57320d72.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/LayoutComponents/Footer.self-dc6ca4f5b192baa7e8595785ea649a8e609e01cf374de5d187ab4986ec884121.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/LayoutComponents/Header.self-5e00eccf05c791cf646cf525ac690b60f7c33398871c78baf8bda4e414e2699e.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/LayoutComponents/MobileMenu.self-debeb19afdb1d956d7615954362f87b87b12a9dc129d476a872ee89a63bfa21f.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/LayoutComponents/Sidebar.self-0ef447cb1eee1d9abf25ff5e7b83c68f941ce6cff22e026358073752927bd10d.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/LayoutComponents/SplashFooter.self-f7670cf6173b4ff7a0d088b8385b1d61252437ecc802cb46ab52f9a750f3771c.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SharedComponents/Comment.self-dbd23df0665aec60cfffe4e946a645aa28a6fff4da7da47284e08fb77347f9f1.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SharedComponents/CommentBox.self-c37d664a6bcff328376232f3a30cedb51be93ea8cd2e4612c5458af55bbd61d1.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SharedComponents/CommentsList.self-a4fc55b636e0fddeb85e46bc2a9e09f5815a346a24dc0eab147231ec41c0bd6a.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SharedComponents/ImageUploadForm.self-706bbdb4410d14b505d23baf8b5eb130c067a19ffd374330330f3741f9bafd80.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SharedComponents/MediaCard.self-43b1a504f9a6f5dcd401ec24e23023c21a73a96dee317d15cc545c49ac435471.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SharedComponents/MediaImage.self-9663fd74255660a06c006d26a21ae5a8270b188f11598ed152ebff733bab12e9.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SharedComponents/MediaText.self-824b7803de36a494ad6ddb09f08706791c0febcee132c2ac5a60d8e9bdd7bd6f.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SharedComponents/Stream.self-2a4d08191eee20df92ebb1725c6333dbac78c9ad2f957daf362f70b1ad02b18f.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SharedComponents/StreamFooter.self-95858f03f25fbb7d019b060dd9af0800191b7189408692a36b4a044338c3dabf.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SharedComponents/StreamFooterItem.self-c09f9a69571d57dc5ae870d430e65b9e93af92f3d2ddd6a2d7f4dc8a7c669fb8.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SharedComponents/StreamItem.self-dcd4b6078a0fcbfb7fbfb8c56a1f756ccd8109678fd1442526c83603e4f9879a.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SplashPageComponents/SplashHeader.self-f1d1b713695f27a7487d4f37ae34aae67d72feb679f20600b361bec6beaf5e96.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/SplashPageComponents/SplashPage.self-4f5ad57e8efc55b34768b0d7ed5fec504378a95ff112b95ea47e0a5ece8e0b76.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/Badges.self-ea1069daefffa8879ad2b64c311d61d5c8c78c202980d9c5669a23cc62c9757c.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/ProfileEdit.self-6d8653d2435aef53831c7882ce5ea977eb87086c41f4362d1da9c887af9c562f.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserActivity.self-85598e84d73f04095d8379299d699a89db6335e8228c705bfe0ac6bb6ee67664.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserBadges.self-f0b45d2050a89e381253d2047d76c23e277e4bfb840ed562a7a1e93c2e9be68b.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserFixedItem.self-6d3b206ffc435b3c127d43ee3ebc38bee3283ace7bd394d235d203cb9d5aa229.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserFixedList.self-5c723453eb77e0d207e7be4e3d668b27d970a04def107e07db26e60f60e5ef6b.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserIssuesItem.self-5e55dc4e50d23f5e1fa51986bb51fa7b3c029023750bda4f4796011f9299b3dd.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserIssuesList.self-11c10e6e168d017e1b423eab019aa4e593b23dca2fb53a0ffcb0c5e578264c47.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserProfileCard.self-8332f8024788f3c7f06fea788af1784ac3b00bf0e0bb50fdb8be0717725af202.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserShow.self-48cef67b632966f18e864d6f220c48e00c2112500b080fd499c62673c07538a8.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserWatchingItem.self-872298f62b644e17466d5d7f682303a32464411db8980f6f109029d123b24290.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components/UserShowComponents/UserWatchingList.self-dad4ad751ebd6bb997c4598118e26cb3b7dade2129f12d4f992ac8c2b9f8a91f.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/components.self-1718c158cd836759a27c6a8cc6374be4fd5ad27912db7f45bc1c611a8d750c64.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/App.self-9b5b0fd0b41dc7255bd7145f53772b9ea94e04dc2273d35a9a88914bf0859e13.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
+
+
+Started GET "/assets/application.self-e4c9792ff61a2ba25000edaefd0be52638f1aaec2df7b1a862c401dbdf861ba5.js?body=1" for ::1 at 2015-11-14 12:43:14 -0500
