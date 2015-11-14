@@ -35,4 +35,4 @@ var Dashboard = React.createClass({
 })
 
 
-// <h4 className="ui horizontal divider header"> MeToo Issue Map </h4>
+// <h4 className="ui horizontal divider header"> MeToo Incident Map </h4>

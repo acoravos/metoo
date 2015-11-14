@@ -1,7 +1,7 @@
 var IssueOpenClose = React.createClass({
 
   getInitialState: function(){
-    if (this.props.issue.status == "closed"){
+    /* if (this.props.issue.status == "closed"){
       var path = "/issues/"+this.props.issue.id+"/reopen"
       var button = ""
       var button_text = "Re-open Issue"
@@ -14,7 +14,7 @@ var IssueOpenClose = React.createClass({
       var button_text = "Close Issue"
       var message = "You created this issue, but no one has submitted fixes yet. Would you like to close your issue?"
       var status = "open"
-    }
+    } */
     return {
       message: message,
       button: button,
@@ -30,7 +30,7 @@ var IssueOpenClose = React.createClass({
 
     App.jacobs_request("PUT", this.state.path)
 
-    if (this.state.status == "closed"){
+    /* if (this.state.status == "closed"){
       this.state.path= "/issues/"+this.props.issue.id+"/close"
       this.state.status = "open"
       // this.state.button = " red"
@@ -43,7 +43,7 @@ var IssueOpenClose = React.createClass({
       this.state.button = ""
       this.state.button_text = "Re-open Issue"
       this.state.message = "You created this issue, and someone has submitted a fix, which auto-closed your issue. Would you like to re-open the issue?"
-    }
+    } */
 
     this.forceUpdate()
 
