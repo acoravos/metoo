@@ -10,7 +10,7 @@ var UserProfileCard = React.createClass({
           <div className="content">
             <p className="header"> {this.props.user.first_name} {this.props.user.last_name} </p>
             <div className="meta">
-              <span className="date"> FixStart Hero ID #{this.props.user.id}</span>
+              <span className="date"> MeToo Hero ID #{this.props.user.id}</span>
             </div>
             <div className="description">
               {this.props.user.bio}

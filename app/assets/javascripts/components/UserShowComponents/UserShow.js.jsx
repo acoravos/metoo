@@ -1,7 +1,7 @@
 var UserShow = React.createClass({
 
   componentWillMount: function() {
-    document.title ="FixStart | "+ this.props.user.first_name +" "+ this.props.user.last_name;
+    document.title ="MeToo | "+ this.props.user.first_name +" "+ this.props.user.last_name;
   },
 
   render: function(){

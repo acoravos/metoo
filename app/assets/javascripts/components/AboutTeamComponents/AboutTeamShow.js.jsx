@@ -1,6 +1,6 @@
 var AboutTeamShow = React.createClass({
   componentWillMount: function() {
-    document.title = "FixStart | About Us";
+    document.title = "MeToo | About Us";
   },
 
   render: function(){

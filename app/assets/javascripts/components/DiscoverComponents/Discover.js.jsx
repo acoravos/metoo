@@ -27,7 +27,7 @@ var Discover = React.createClass({
   },
 
   componentWillMount: function() {
-    document.title = "FixStart | Discover";
+    document.title = "MeToo | Discover";
   },
 
   render: function(){
