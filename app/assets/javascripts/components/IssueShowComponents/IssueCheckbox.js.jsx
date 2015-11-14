@@ -5,12 +5,12 @@ var IssueCheckbox = React.createClass({
       var path = "/issues_watches/*"
       var method = "DELETE"
       var button = " primary"
-      var following = "Following"
+      var following = "Watching"
     }else{
       var path= "/issues_watches"
       var method = "POST"
       var button = ""
-      var following = "Follow"
+      var following = "Add to Watch List"
     }
     return {
       button: button,
@@ -35,13 +35,13 @@ var IssueCheckbox = React.createClass({
       this.state.path= "/issues_watches"
       this.state.method = "POST"
       this.state.watching = false;
-      this.state.following = "Follow"
+      this.state.following = "Add to Watch List"
       this.state.button = ""
     }else{
       this.state.path= "/issues_watches/*"
       this.state.method = "DELETE"
       this.state.watching = true;
-      this.state.following = "Following"
+      this.state.following = "Watching"
       this.state.button = " primary"
     }
 

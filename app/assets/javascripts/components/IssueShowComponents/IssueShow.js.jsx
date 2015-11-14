@@ -1,7 +1,7 @@
 var IssueShow = React.createClass({
 
   componentWillMount: function() {
-    document.title ="FixStart | "+ this.props.issue.title;
+    document.title ="MeToo | "+ this.props.issue.title;
   },
 
   render: function(){

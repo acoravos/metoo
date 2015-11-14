@@ -53,7 +53,7 @@ var IssueVotes = React.createClass({
 
       { this.props.current_user ?
         <div>
-                <p> {this.state.upvotes} MeToo community members have up-voted this issue </p>
+                <p> {this.state.upvotes} MeToo members have up-voted this issue for follow-up</p>
                 <form className="issue_votes_form" onSubmit={this.handleSubmit}>
                   <button className={"ui icon" + this.state.button + "button"} type= "Submit"> <i className="thumbs up icon"  /> </button>
                 </form>

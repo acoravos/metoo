@@ -25,7 +25,7 @@ var IssueForm = React.createClass({
         <form className="issue_new_form ui form" ref="form" action="/issues" method="post" encType="multipart/form-data" onSubmit={this.handleSubmit} >
 
           <div className="field">
-            <label htmlFor="in_title">Issue title</label>
+            <label htmlFor="in_title">Incident title</label>
             <input id="in_title" ref="title" name="issue[title]" type="text" required />
           </div>
 

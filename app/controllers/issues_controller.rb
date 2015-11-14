@@ -77,6 +77,8 @@ class IssuesController < ApplicationController
       @issue.image_url = "http://i.imgur.com/xQyE9HC.png"
     end
 
+    @issue.community_id = 1
+
     if @issue.save
       unless category_id_array.empty?
         category_id_array.each do |category_id|
