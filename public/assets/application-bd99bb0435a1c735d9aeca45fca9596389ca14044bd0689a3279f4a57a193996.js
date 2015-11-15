@@ -57067,7 +57067,7 @@ var Header = React.createClass({
           )
         )
       ),
-      React.createElement("img", { id: "mainImage", src: "http://i.imgur.com/LnTYPZ2.jpg" })
+      React.createElement("img", { id: "mainImage", src: "http://i.imgur.com/VYcXx10.jpg" })
     );
   }
 });
