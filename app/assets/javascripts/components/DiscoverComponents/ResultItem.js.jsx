@@ -9,19 +9,17 @@ var ResultItem = React.createClass({
 
         <div className="content">
           <div className="summary">
-              {this.props.title}
+              <a href={this.props.link}>{this.props.title}</a> | <em className="result_item_category">{this.props.categoryName}</em>
+              <br/>
               <div className="date">
-                <b>Upvotes:</b> {this.props.points}
-                <b>Day:</b> {this.props.date}
+              <b>Submitted on </b> {this.props.date.substring(0,10)} | <b>Upvotes:</b> {this.props.points}
               </div>
           </div>
               <div className="extra text">
-                <em className="result_item_category">{this.props.categoryName}</em><br/>
                 <em className="result_item_category">{this.props.address}</em><br/>
                 {this.props.description}
               </div>
               <br/>
-              <a className="medium ui teal button discover_fix_button" id="fix" href={this.props.link}>Resolve it!</a>
               <hr/>
         </div>
       </div>

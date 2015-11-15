@@ -5,7 +5,7 @@ task :hupd_import_25 => :environment do
 
   f = CSV.foreach("#{Rails.root}/db/policelog_original.csv", headers: true) do |row|
     puts c += 1
-    if c < 26
+    if c < 50
         i = Issue.new
         i.user_id = 1
         i.community_id = 1
