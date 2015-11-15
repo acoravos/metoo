@@ -15,14 +15,14 @@ class Issue < ActiveRecord::Base
 
   CATEGORIES = {
     "None" => 'circle-stroked',
-    "Heavy" => 'square-stroked',
-    "Very Heavy" => 'square',
-    "Dirty" => 'waste-basket',
-    "Tools" => 'logging',
-    "Yard Work & Removal" => 'garden',
-    "General Handyman" => 'pitch',
+    "Violent crime" => 'square-stroked',
+    "Sexual assault" => 'square',
+    "Noise" => 'alcohol-shop',
+    "Theft" => 'logging',
+    "Harrassment" => 'police',
+    "Suspicious activity" => 'pitch',
     "Escalate" => 'police',
-    "Uncategorized" => 'circle-stroked'
+    "Other" => 'circle-stroked'
   }
 
   def self.assign_category(issue)
