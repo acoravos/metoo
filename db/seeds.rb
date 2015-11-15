@@ -42,9 +42,7 @@ global = Community.create(title: "global")
 
 
 #-------------------------------- ISSUES -------------------------------------------#
-theft = Issue.create(user_id: 2, community_id: 1, title: "Someone stole my gem", description: "Unattended gem stolen in the iLab. Stolen Value $1000", image_url: "http://i.imgur.com/EL8I4re.jpg", latitude: "42.363872", longitude: "-71.123805", status: "open" )
-fence = Issue.create(user_id: 1, community_id: 1, title: "Busted fence", description: "This fence has been broken for a long time. It would be great if somebody could fix it up. Most of the lumber is still there, it probably just needs some nails. Bring a hammer.", image_url: "http://i.imgur.com/MDgWvxy.jpg", latitude: "37.779805600955584", longitude: "-122.47713088989258", status: "open" )
-graffiti = Issue.create(user_id: 3, community_id: 1, title: "Graffiti on the wall", description: "Some dumb punks tagged up this wall a couple weeks ago and I'm tired of looking at it.", image_url: "http://i.imgur.com/QGndXZr.jpg", latitude: "37.78821704497665", longitude: "-122.43327140808104", status: "closed" )
+theft = Issue.create(user_id: 2, community_id: 1, title: "Someone stole my gem", description: "Unattended gem stolen in the iLab. Stolen Value $1000", latitude: "42.363872", longitude: "-71.123805", status: "open" )
 
 #---------------------------------------------------------------------------------#
 
@@ -54,8 +52,7 @@ graffiti = Issue.create(user_id: 3, community_id: 1, title: "Graffiti on the wal
 
 
 #-------------------------------- FIXES ------------------------------------------#
-trashcanfix = Fix.create(user_id: 4, issue_id: theft.id, title: "Picked up trashcan", description: "Got most of the trash, but the can keeps falling over.", image_url: "http://i.imgur.com/VnowEZ2.jpg")
-trashcanfix2 = Fix.create(user_id: 3, issue_id: theft.id, title: "Fixed it!", description: "It took a litte bit of industrial adhesive, but I got the can to stay again.", image_url: "http://i.imgur.com/aYluzcZ.jpg")
+
 #----------------------------------------------------------------------------------#
 
 
@@ -63,8 +60,7 @@ trashcanfix2 = Fix.create(user_id: 3, issue_id: theft.id, title: "Fixed it!", de
 
 
 #-------------------------------- FIX COMMENTS ---------------------------------------#
-trashcanfixcomment = FixComment.create(fix_id: trashcanfix.id, user_id: 3, content: "Thanks for getting the trash, I'll come by with some adhesive to stick the can back down.")
-trashcanfixcomment2 = FixComment.create(fix_id: trashcanfix.id, user_id: 4, content: "Cool, thanks a lot!")
+
 #-------------------------------------------------------------------------------------#
 
 
@@ -72,8 +68,7 @@ trashcanfixcomment2 = FixComment.create(fix_id: trashcanfix.id, user_id: 4, cont
 
 
 #-------------------------------- ISSUE COMMENTS -------------------------------------#
-trancancomment = IssueComment.create(issue_id: theft.id, user_id: 1, content: "What an eyesore, somebody get on this.")
-smashcancomment = IssueComment.create(issue_id: theft.id, user_id: 2, content: "Looks like it's all fixed now!")
+
 #-------------------------------------------------------------------------------------#
 
 

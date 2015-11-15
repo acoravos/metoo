@@ -3,11 +3,8 @@ var CommunityStandards = React.createClass({
     return (
       <div className="about_team_show_page">
         <h2 className="ui horizontal divider header"> Community Standards </h2>
-          <p> Here at FixStart, we believe that a community thrives only as much as its people.</p>
-          <p> FixStart is an experiment that asks the question of how we can get people talking about and actively participating in their communities and neighborhoods. See something that could be fixed or touched up, but dont have the tools yourself to make it happen? Submit an issue. Let your community know. Have a fellow good samaritanm appropriately-equipped for the job, take on the task.</p>
-          <p> Conversely, engage in resolving locally submitted issues by taking them on yourself. See that you have the tools to fix an issue? Hop on it, and get rewarded for your efforts with FixStart badges.</p>
-          <p> Issues submitted to FixStart should be only issues that other members of the civilian community can and/or should fix. </p>
-          <p> Any issue that is beyond the basic repair of a fellow civilian should be <b>escalated</b> to your <a href="http://sf311.org/index.aspx?page=87">local city</a>. </p>
+          <p> Here at MeToo, we believe that a community thrives only as much as its people.</p>
+          <p> Harvard University released troubling statistics earlier this year. 1 in 5 women and 1 in 16 men are sexually assaulted while in college. Sexual assaults are the most underreported crime in the US. And most assaults are perputrated by a small number of individuals, and are much more common the first 3 months of the year. We wanted to turn the tables and put information back in the hands of Harvard students. MeToo is an app that allows people to anonymously post information about assaults on a map and other students can search the information so they can make the best informed decisions as they go about their daily lives. </p>
         <br/>
 
       </div>
