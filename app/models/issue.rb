@@ -184,11 +184,12 @@ class Issue < ActiveRecord::Base
       category_name: category,
       points: issue.users_votes.size,
       image: image,
+      created_at: issue.created_at,
       address: Geocoder.address("#{issue.latitude}, #{issue.longitude}") }
   end
 
   def package_info
-    {id: self.id, user_id: self.user_id, title: self.title, image_url: self.image_url, status: self.status, upvotes: self.users_votes.size}
+    {id: self.id, user_id: self.user_id, title: self.title, image_url: self.image_url, status: self.status, upvotes: self.users_votes.size, created_at:self.created_at}
   end
 
 end
