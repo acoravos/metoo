@@ -12,6 +12,7 @@ var ResultItem = React.createClass({
               {this.props.title}
               <div className="date">
                 <b>Upvotes:</b> {this.props.points}
+                <b>Day:</b> {this.props.date}
               </div>
           </div>
               <div className="extra text">
