@@ -45,7 +45,7 @@ Incident Map
   * **User** - Incorporates Devise for user authentication
   * **UsersVote** - Manages community "up votes" for individual incidents
   * **Incidents**
-  * **IssuesWatch** - This model allows users to "watch" or track a given incident over time
+  * **IncidentsWatch** - This model allows users to "watch" or track a given incident over time
   * **Category** - This is our list of categories for a given issue
   * **Communities** - For our Beta version, we only have a "global" or public community, but overtime we are planning on releasing individual and private communities
 
@@ -56,5 +56,6 @@ To setup locally:
 * fork + clone
 * bundle install
 * bundle exec rake db:create db:migrate db:seed
+* rake hupd_import_25 (to pre-load the first 25 incidents in the database)
 * bundle exec rails s
 * browser -> localhost:3000
