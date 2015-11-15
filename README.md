@@ -8,7 +8,7 @@ We used the [FixStart.io](https://github.com/shadylogic/fixstarter) open-source 
 
 Incident Map
 
-![alt text](https://www.dropbox.com/s/gz6afgd0vwf3icy/Screenshot%202015-11-15%2009.59.03.png?dl=0")
+![alt text](http://i.imgur.com/Kpi01Fn.jpg)
 
 ## Technologies
 
