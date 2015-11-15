@@ -41762,7 +41762,7 @@ Floated Menu / Item
 #splash_wrapper {
   min-height: 100%;
   overflow: hidden;
-  background: url(http://i.imgur.com/ev4zHig.jpg) no-repeat center center fixed;
+  background: url(http://i.imgur.com/eb8bzuP.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -41785,7 +41785,7 @@ Floated Menu / Item
 }
 
 /*#splashImage{
-  background-image: url('http://i.imgur.com/hNp8q7C.jpg');
+  background-image: url('http://i.imgur.com/eb8bzuP.jpg');
   width: 100%;
   position: absolute;
   z-index: -1;
@@ -41794,7 +41794,7 @@ Floated Menu / Item
 }*/
 /* line 275, /Users/apprentice/Desktop/fixstarter/app/assets/stylesheets/application.css.scss */
 .splashImage {
-  background-image: url("http://i.imgur.com/hNp8q7C.jpg");
+  background-image: url("http://i.imgur.com/eb8bzuP.jpg");
   height: 500px;
   /*position: absolute;*/
   top: 0;
