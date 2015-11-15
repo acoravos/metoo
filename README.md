@@ -2,9 +2,19 @@
 
 A Sexual Assault and crime prevention app built for the [HackHarvard 2015](hackharvard.org) hackathon.
 
+Here at MeToo, we believe that a community thrives only as much as its people.
+
+Harvard University released troubling statistics earlier this year. 1 in 5 women and 1 in 16 men are sexually assaulted while in college. Sexual assaults are the most underreported crime in the US. And most assaults are perputrated by a small number of individuals, and are much more common the first 3 months of the year. 
+
+We wanted to turn the tables and put information back in the hands of Harvard students. MeToo is an app that allows people to anonymously post information about assaults on a map and other students can search the information so they can make the best informed decisions as they go about their daily lives.
+
 We used the [FixStart.io](https://github.com/shadylogic/fixstarter) open-source GitHub template to build the backbone of our app. We also had access to public police logs from the Harvard University Police for the past 3 years to populate the data.
 
 ## Screen Shots
+
+Homepage
+
+![alt text](http://i.imgur.com/BHZMTQ8.jpg)
 
 Incident Map
 
